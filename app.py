@@ -583,7 +583,7 @@ if not st.session_state.authenticated:
 
         try:
 
-            redirect_url = "https://foodlens-ai.streamlit.app/"
+            redirect_url = "https://foodlens-ai-app.streamlit.app/"
 
             response = supabase.auth.sign_in_with_oauth(
                 {
