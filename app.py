@@ -583,7 +583,7 @@ if not st.session_state.authenticated:
 
         try:
 
-            redirect_url = "http://localhost:8501"
+            redirect_url = "https://foodlens-ai-q6u2egu6ilqd5tfjpgbjct.streamlit.app/"
 
             response = supabase.auth.sign_in_with_oauth(
                 {
