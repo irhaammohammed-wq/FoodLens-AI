@@ -1,0 +1,4 @@
+food_name,recipe_name,servings,calories,protein_g,carbs_g,fat_g,ingredients,instructions
+pizza,Classic Margherita Pizza,2,550,22,65,20,"Pizza dough; Tomato sauce; Mozzarella cheese; Basil; Olive oil","Prepare the dough. Spread tomato sauce. Add mozzarella and basil. Bake until the crust is golden."
+pizza,Vegetable Pizza,2,480,18,60,16,"Pizza dough; Tomato sauce; Mozzarella cheese; Bell pepper; Onion; Olive oil","Prepare the dough. Add sauce and vegetables. Top with cheese. Bake until golden and crispy."
+pizza,Chicken Pizza,2,620,35,58,22,"Pizza dough; Tomato sauce; Mozzarella cheese; Cooked chicken; Onion; Bell pepper","Spread sauce over dough. Add chicken, vegetables and cheese. Bake until the crust is golden."

@@ -1,0 +1,2910 @@
+[
+    {
+        "food": "pizza",
+        "recipe_name": "Classic Margherita Pizza",
+        "servings": 2,
+        "calories": 650,
+        "protein": 24,
+        "carbs": 82,
+        "fat": 24,
+        "ingredients": [
+            "2 cups all-purpose flour",
+            "1 teaspoon instant yeast",
+            "1 teaspoon salt",
+            "3/4 cup warm water",
+            "1 tablespoon olive oil",
+            "1/2 cup tomato sauce",
+            "150 g mozzarella cheese",
+            "Fresh basil leaves"
+        ],
+        "instructions": [
+            "Mix flour, yeast and salt in a bowl.",
+            "Add warm water and olive oil and knead into a dough.",
+            "Let the dough rest for about 1 hour.",
+            "Roll the dough into a pizza base.",
+            "Spread tomato sauce evenly over the base.",
+            "Add mozzarella cheese and fresh basil.",
+            "Bake at 220°C for 12–15 minutes.",
+            "Slice and serve hot."
+        ]
+    },
+    {
+        "food": "pizza",
+        "recipe_name": "Vegetable Pizza",
+        "servings": 2,
+        "calories": 580,
+        "protein": 21,
+        "carbs": 76,
+        "fat": 20,
+        "ingredients": [
+            "1 pizza base",
+            "1/2 cup tomato sauce",
+            "100 g mozzarella cheese",
+            "1/2 bell pepper",
+            "1/2 onion",
+            "1/2 cup mushrooms",
+            "1 tablespoon olive oil",
+            "Italian herbs"
+        ],
+        "instructions": [
+            "Place the pizza base on a baking tray.",
+            "Spread tomato sauce over the base.",
+            "Add mozzarella cheese.",
+            "Top with sliced bell pepper, onion and mushrooms.",
+            "Sprinkle Italian herbs over the vegetables.",
+            "Bake at 220°C for 12–15 minutes.",
+            "Remove from the oven and serve hot."
+        ]
+    },
+    {
+        "food": "pizza",
+        "recipe_name": "Pepperoni Pizza",
+        "servings": 2,
+        "calories": 720,
+        "protein": 29,
+        "carbs": 78,
+        "fat": 31,
+        "ingredients": [
+            "1 pizza base",
+            "1/2 cup tomato sauce",
+            "150 g mozzarella cheese",
+            "80 g pepperoni slices",
+            "1 teaspoon Italian herbs"
+        ],
+        "instructions": [
+            "Place the pizza base on a baking tray.",
+            "Spread tomato sauce evenly over the base.",
+            "Add mozzarella cheese.",
+            "Arrange pepperoni slices over the cheese.",
+            "Sprinkle Italian herbs on top.",
+            "Bake at 220°C for 12–15 minutes.",
+            "Slice and serve hot."
+        ]
+    },
+    {
+        "food": "hamburger",
+        "recipe_name": "Classic Beef Burger",
+        "servings": 2,
+        "calories": 620,
+        "protein": 34,
+        "carbs": 48,
+        "fat": 31,
+        "ingredients": [
+            "2 burger buns",
+            "250 g ground beef",
+            "2 cheese slices",
+            "1 tomato",
+            "1/2 onion",
+            "Lettuce leaves",
+            "2 tablespoons mayonnaise",
+            "1 tablespoon ketchup",
+            "Salt and black pepper"
+        ],
+        "instructions": [
+            "Season the ground beef with salt and pepper and form two patties.",
+            "Heat a pan or grill and cook the patties until fully cooked.",
+            "Place cheese slices on the patties during the final minute.",
+            "Toast the burger buns lightly.",
+            "Spread mayonnaise and ketchup on the buns.",
+            "Layer lettuce, tomato, onion and the beef patties.",
+            "Close the burgers and serve hot."
+        ]
+    },
+    {
+        "food": "chicken_wings",
+        "recipe_name": "Oven-Baked Chicken Wings",
+        "servings": 2,
+        "calories": 520,
+        "protein": 38,
+        "carbs": 18,
+        "fat": 32,
+        "ingredients": [
+            "500 g chicken wings",
+            "1 tablespoon olive oil",
+            "1 teaspoon paprika",
+            "1 teaspoon garlic powder",
+            "1/2 teaspoon black pepper",
+            "Salt",
+            "2 tablespoons hot sauce"
+        ],
+        "instructions": [
+            "Pat the chicken wings dry.",
+            "Mix wings with olive oil, paprika, garlic powder, pepper and salt.",
+            "Arrange wings on a lined baking tray.",
+            "Bake at 220°C for about 35–40 minutes, turning halfway.",
+            "Toss with hot sauce.",
+            "Bake for another 5 minutes and serve."
+        ]
+    },
+    {
+        "food": "steak",
+        "recipe_name": "Garlic Butter Steak",
+        "servings": 2,
+        "calories": 610,
+        "protein": 48,
+        "carbs": 8,
+        "fat": 42,
+        "ingredients": [
+            "2 beef steaks",
+            "1 tablespoon butter",
+            "3 garlic cloves",
+            "1 teaspoon olive oil",
+            "Salt",
+            "Black pepper",
+            "Fresh parsley"
+        ],
+        "instructions": [
+            "Pat the steaks dry and season with salt and pepper.",
+            "Heat olive oil in a heavy pan.",
+            "Sear the steaks on both sides to your preferred doneness.",
+            "Add butter and crushed garlic to the pan.",
+            "Baste the steaks with the garlic butter.",
+            "Rest the steaks for 5 minutes.",
+            "Slice and garnish with parsley."
+        ]
+    },
+    {
+        "food": "sushi",
+        "recipe_name": "Simple California Sushi Rolls",
+        "servings": 2,
+        "calories": 430,
+        "protein": 18,
+        "carbs": 64,
+        "fat": 11,
+        "ingredients": [
+            "1 cup sushi rice",
+            "2 nori sheets",
+            "1/2 cucumber",
+            "1 avocado",
+            "100 g cooked crab meat",
+            "1 tablespoon rice vinegar",
+            "Soy sauce"
+        ],
+        "instructions": [
+            "Cook the sushi rice and let it cool slightly.",
+            "Mix the rice with rice vinegar.",
+            "Place a nori sheet on a sushi mat.",
+            "Spread rice evenly over the nori.",
+            "Add cucumber, avocado and crab meat.",
+            "Roll tightly using the sushi mat.",
+            "Slice into pieces and serve with soy sauce."
+        ]
+    },
+    {
+        "food": "spaghetti_bolognese",
+        "recipe_name": "Classic Spaghetti Bolognese",
+        "servings": 2,
+        "calories": 590,
+        "protein": 31,
+        "carbs": 76,
+        "fat": 19,
+        "ingredients": [
+            "200 g spaghetti",
+            "200 g ground beef",
+            "1 cup tomato passata",
+            "1 onion",
+            "2 garlic cloves",
+            "1 tablespoon olive oil",
+            "1 teaspoon Italian herbs",
+            "Grated Parmesan"
+        ],
+        "instructions": [
+            "Cook spaghetti according to the package directions.",
+            "Heat olive oil and sauté onion and garlic.",
+            "Add ground beef and cook until browned.",
+            "Pour in tomato passata and add Italian herbs.",
+            "Simmer the sauce for 15–20 minutes.",
+            "Toss the cooked spaghetti with the sauce.",
+            "Top with Parmesan and serve."
+        ]
+    },
+    {
+        "food": "spaghetti_carbonara",
+        "recipe_name": "Classic Spaghetti Carbonara",
+        "servings": 2,
+        "calories": 610,
+        "protein": 25,
+        "carbs": 72,
+        "fat": 26,
+        "ingredients": [
+            "200 g spaghetti",
+            "2 eggs",
+            "60 g Parmesan cheese",
+            "100 g pancetta or bacon",
+            "2 garlic cloves",
+            "Black pepper",
+            "Salt"
+        ],
+        "instructions": [
+            "Cook spaghetti in salted water until al dente.",
+            "Fry the pancetta until crisp.",
+            "Whisk eggs with Parmesan and plenty of black pepper.",
+            "Reserve some pasta water before draining the spaghetti.",
+            "Toss hot spaghetti with the pancetta.",
+            "Remove from heat and mix in the egg mixture, adding pasta water as needed.",
+            "Serve immediately with extra Parmesan."
+        ]
+    },
+    {
+        "food": "ramen",
+        "recipe_name": "Quick Chicken Ramen",
+        "servings": 2,
+        "calories": 510,
+        "protein": 29,
+        "carbs": 61,
+        "fat": 18,
+        "ingredients": [
+            "2 portions ramen noodles",
+            "500 ml chicken stock",
+            "150 g cooked chicken",
+            "2 eggs",
+            "1 tablespoon soy sauce",
+            "1 teaspoon sesame oil",
+            "Spring onions",
+            "1 cup mushrooms"
+        ],
+        "instructions": [
+            "Heat the chicken stock in a pot.",
+            "Add soy sauce and sesame oil.",
+            "Add mushrooms and simmer for a few minutes.",
+            "Cook the ramen noodles in the broth.",
+            "Add sliced cooked chicken.",
+            "Top each bowl with a boiled egg and spring onions.",
+            "Serve hot."
+        ]
+    },
+    {
+        "food": "fried_rice",
+        "recipe_name": "Vegetable Fried Rice",
+        "servings": 2,
+        "calories": 470,
+        "protein": 13,
+        "carbs": 72,
+        "fat": 15,
+        "ingredients": [
+            "2 cups cooked rice",
+            "1 carrot",
+            "1/2 cup peas",
+            "1/2 bell pepper",
+            "2 eggs",
+            "2 tablespoons soy sauce",
+            "1 tablespoon sesame oil",
+            "2 spring onions"
+        ],
+        "instructions": [
+            "Heat sesame oil in a large pan or wok.",
+            "Add carrot, peas and bell pepper and stir-fry.",
+            "Push the vegetables aside and scramble the eggs.",
+            "Add cooked rice and mix everything together.",
+            "Pour in soy sauce and stir-fry for several minutes.",
+            "Add spring onions.",
+            "Serve hot."
+        ]
+    },
+    {
+        "food": "french_fries",
+        "recipe_name": "Crispy Oven French Fries",
+        "servings": 2,
+        "calories": 390,
+        "protein": 6,
+        "carbs": 58,
+        "fat": 15,
+        "ingredients": [
+            "3 large potatoes",
+            "1 tablespoon olive oil",
+            "1/2 teaspoon paprika",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Cut potatoes into even strips.",
+            "Soak them in cold water for 20–30 minutes.",
+            "Drain and dry thoroughly.",
+            "Toss with olive oil, paprika, salt and pepper.",
+            "Arrange in a single layer on a baking tray.",
+            "Bake at 220°C for 30–35 minutes, turning halfway.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "pancakes",
+        "recipe_name": "Fluffy Breakfast Pancakes",
+        "servings": 2,
+        "calories": 430,
+        "protein": 12,
+        "carbs": 61,
+        "fat": 15,
+        "ingredients": [
+            "1 cup all-purpose flour",
+            "1 tablespoon sugar",
+            "1 teaspoon baking powder",
+            "1 egg",
+            "3/4 cup milk",
+            "1 tablespoon melted butter",
+            "Maple syrup",
+            "Fresh berries"
+        ],
+        "instructions": [
+            "Mix flour, sugar and baking powder.",
+            "Whisk egg, milk and melted butter separately.",
+            "Combine the wet and dry ingredients without overmixing.",
+            "Heat a lightly greased pan.",
+            "Pour small portions of batter into the pan.",
+            "Cook until bubbles form, then flip and cook the other side.",
+            "Serve with maple syrup and berries."
+        ]
+    },
+    {
+        "food": "waffles",
+        "recipe_name": "Classic Belgian Waffles",
+        "servings": 2,
+        "calories": 480,
+        "protein": 13,
+        "carbs": 63,
+        "fat": 20,
+        "ingredients": [
+            "1 cup flour",
+            "1 tablespoon sugar",
+            "1 teaspoon baking powder",
+            "1 egg",
+            "3/4 cup milk",
+            "2 tablespoons melted butter",
+            "Vanilla extract",
+            "Fresh berries"
+        ],
+        "instructions": [
+            "Mix flour, sugar and baking powder.",
+            "Whisk egg, milk, melted butter and vanilla.",
+            "Combine wet and dry ingredients.",
+            "Preheat the waffle maker.",
+            "Pour in the batter and cook until golden.",
+            "Remove carefully and top with berries.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "donuts",
+        "recipe_name": "Classic Glazed Donuts",
+        "servings": 4,
+        "calories": 310,
+        "protein": 5,
+        "carbs": 43,
+        "fat": 13,
+        "ingredients": [
+            "2 cups flour",
+            "2 tablespoons sugar",
+            "1 teaspoon instant yeast",
+            "3/4 cup warm milk",
+            "1 egg",
+            "2 tablespoons butter",
+            "1 cup powdered sugar",
+            "2 tablespoons milk"
+        ],
+        "instructions": [
+            "Mix flour, sugar and yeast.",
+            "Add warm milk, egg and butter and knead into a soft dough.",
+            "Let the dough rise for about 1 hour.",
+            "Roll out the dough and cut donut shapes.",
+            "Let the donuts rest for another 20 minutes.",
+            "Bake at 190°C until lightly golden.",
+            "Mix powdered sugar with milk to make a glaze.",
+            "Dip the cooled donuts in the glaze and serve."
+        ]
+    },
+    {
+        "food": "caesar_salad",
+        "recipe_name": "Classic Chicken Caesar Salad",
+        "servings": 2,
+        "calories": 460,
+        "protein": 34,
+        "carbs": 24,
+        "fat": 27,
+        "ingredients": [
+            "2 chicken breast fillets",
+            "4 cups romaine lettuce",
+            "1/2 cup croutons",
+            "1/4 cup Parmesan cheese",
+            "3 tablespoons Caesar dressing",
+            "Black pepper",
+            "Salt"
+        ],
+        "instructions": [
+            "Season the chicken with salt and pepper.",
+            "Grill or pan-cook the chicken until fully cooked.",
+            "Slice the chicken into strips.",
+            "Toss romaine lettuce with Caesar dressing.",
+            "Add croutons and Parmesan.",
+            "Top with sliced chicken.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "club_sandwich",
+        "recipe_name": "Classic Club Sandwich",
+        "servings": 2,
+        "calories": 540,
+        "protein": 30,
+        "carbs": 46,
+        "fat": 27,
+        "ingredients": [
+            "6 slices bread",
+            "150 g cooked chicken",
+            "4 slices turkey or ham",
+            "4 bacon strips",
+            "1 tomato",
+            "Lettuce leaves",
+            "2 tablespoons mayonnaise",
+            "1 tablespoon butter"
+        ],
+        "instructions": [
+            "Toast the bread slices lightly.",
+            "Cook the bacon until crisp.",
+            "Spread mayonnaise on the toast.",
+            "Layer lettuce, tomato, chicken, turkey or ham and bacon.",
+            "Add another slice of toast and repeat the layers.",
+            "Cut each sandwich into triangles.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "grilled_cheese_sandwich",
+        "recipe_name": "Golden Grilled Cheese",
+        "servings": 2,
+        "calories": 430,
+        "protein": 18,
+        "carbs": 38,
+        "fat": 25,
+        "ingredients": [
+            "4 slices bread",
+            "120 g cheddar cheese",
+            "2 tablespoons butter",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Butter one side of each bread slice.",
+            "Place cheese between the unbuttered sides.",
+            "Heat a pan over medium heat.",
+            "Cook sandwiches until golden on one side.",
+            "Flip and cook until the cheese melts.",
+            "Slice and serve hot."
+        ]
+    },
+    {
+        "food": "tacos",
+        "recipe_name": "Chicken Tacos",
+        "servings": 2,
+        "calories": 500,
+        "protein": 32,
+        "carbs": 48,
+        "fat": 21,
+        "ingredients": [
+            "6 small tortillas",
+            "250 g chicken breast",
+            "1 teaspoon paprika",
+            "1/2 teaspoon cumin",
+            "1 tomato",
+            "1/2 onion",
+            "Lettuce",
+            "50 g grated cheese",
+            "Lime juice"
+        ],
+        "instructions": [
+            "Season chicken with paprika, cumin, salt and pepper.",
+            "Cook the chicken in a hot pan until fully cooked.",
+            "Slice the chicken into strips.",
+            "Warm the tortillas.",
+            "Fill each tortilla with chicken, lettuce, tomato and onion.",
+            "Add grated cheese and lime juice.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "lasagna",
+        "recipe_name": "Classic Beef Lasagna",
+        "servings": 4,
+        "calories": 650,
+        "protein": 36,
+        "carbs": 58,
+        "fat": 31,
+        "ingredients": [
+            "8 lasagna sheets",
+            "300 g ground beef",
+            "2 cups tomato sauce",
+            "1 onion",
+            "2 garlic cloves",
+            "1 cup ricotta cheese",
+            "1 cup mozzarella cheese",
+            "1/2 cup Parmesan",
+            "Italian herbs"
+        ],
+        "instructions": [
+            "Cook onion and garlic in olive oil.",
+            "Add ground beef and cook until browned.",
+            "Add tomato sauce and Italian herbs and simmer.",
+            "Cook lasagna sheets according to the package instructions.",
+            "Layer meat sauce, pasta and ricotta in a baking dish.",
+            "Finish with mozzarella and Parmesan.",
+            "Bake at 190°C for 35–40 minutes.",
+            "Rest for 10 minutes before slicing."
+        ]
+    },
+    {
+        "food": "macaroni_and_cheese",
+        "recipe_name": "Creamy Mac and Cheese",
+        "servings": 3,
+        "calories": 570,
+        "protein": 23,
+        "carbs": 61,
+        "fat": 27,
+        "ingredients": [
+            "250 g macaroni",
+            "2 tablespoons butter",
+            "2 tablespoons flour",
+            "2 cups milk",
+            "150 g cheddar cheese",
+            "50 g Parmesan",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Cook macaroni until al dente and drain.",
+            "Melt butter in a saucepan.",
+            "Whisk in flour and cook briefly.",
+            "Gradually add milk while whisking.",
+            "Cook until the sauce thickens.",
+            "Stir in cheddar and Parmesan until melted.",
+            "Add cooked macaroni and mix well.",
+            "Season and serve hot."
+        ]
+    },
+    {
+        "food": "grilled_salmon",
+        "recipe_name": "Lemon Herb Grilled Salmon",
+        "servings": 2,
+        "calories": 480,
+        "protein": 42,
+        "carbs": 6,
+        "fat": 31,
+        "ingredients": [
+            "2 salmon fillets",
+            "1 tablespoon olive oil",
+            "1 lemon",
+            "1 teaspoon dried herbs",
+            "2 garlic cloves",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Pat the salmon dry.",
+            "Rub with olive oil, garlic, herbs, salt and pepper.",
+            "Heat a grill or pan over medium-high heat.",
+            "Cook salmon skin-side down first for several minutes.",
+            "Flip carefully and cook until the fish is fully cooked.",
+            "Squeeze fresh lemon juice over the salmon.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "chocolate_cake",
+        "recipe_name": "Moist Chocolate Cake",
+        "servings": 8,
+        "calories": 390,
+        "protein": 6,
+        "carbs": 53,
+        "fat": 18,
+        "ingredients": [
+            "1 cup flour",
+            "1/2 cup cocoa powder",
+            "3/4 cup sugar",
+            "1 teaspoon baking powder",
+            "2 eggs",
+            "1/2 cup milk",
+            "1/3 cup vegetable oil",
+            "1 teaspoon vanilla extract"
+        ],
+        "instructions": [
+            "Preheat the oven to 180°C.",
+            "Mix flour, cocoa powder, sugar and baking powder.",
+            "Whisk eggs, milk, oil and vanilla separately.",
+            "Combine the wet and dry ingredients.",
+            "Pour into a greased cake tin.",
+            "Bake for 30–35 minutes.",
+            "Cool before slicing and serving."
+        ]
+    },
+    {
+        "food": "cheesecake",
+        "recipe_name": "Classic New York Cheesecake",
+        "servings": 8,
+        "calories": 420,
+        "protein": 8,
+        "carbs": 38,
+        "fat": 27,
+        "ingredients": [
+            "200 g digestive biscuits",
+            "80 g melted butter",
+            "500 g cream cheese",
+            "3/4 cup sugar",
+            "2 eggs",
+            "1 teaspoon vanilla extract",
+            "1/2 cup sour cream"
+        ],
+        "instructions": [
+            "Crush the biscuits and mix with melted butter.",
+            "Press the mixture into the base of a cake tin.",
+            "Beat cream cheese and sugar until smooth.",
+            "Add eggs, vanilla and sour cream.",
+            "Pour the filling over the biscuit base.",
+            "Bake at 160°C until mostly set.",
+            "Cool completely and refrigerate before serving."
+        ]
+    },
+    {
+        "food": "ice_cream",
+        "recipe_name": "Easy Vanilla Ice Cream",
+        "servings": 4,
+        "calories": 280,
+        "protein": 4,
+        "carbs": 28,
+        "fat": 17,
+        "ingredients": [
+            "2 cups heavy cream",
+            "1 cup condensed milk",
+            "1 teaspoon vanilla extract"
+        ],
+        "instructions": [
+            "Whip the heavy cream until soft peaks form.",
+            "Fold in condensed milk and vanilla.",
+            "Pour into a freezer-safe container.",
+            "Cover and freeze for at least 6 hours.",
+            "Let sit for a few minutes before scooping.",
+            "Serve chilled."
+        ]
+    },
+    {
+        "food": "apple_pie",
+        "recipe_name": "Homestyle Apple Pie",
+        "servings": 8,
+        "calories": 360,
+        "protein": 4,
+        "carbs": 52,
+        "fat": 16,
+        "ingredients": [
+            "2 pie crusts",
+            "4 apples",
+            "1/2 cup sugar",
+            "1 teaspoon cinnamon",
+            "1 tablespoon lemon juice",
+            "1 tablespoon butter"
+        ],
+        "instructions": [
+            "Peel and slice the apples.",
+            "Mix apples with sugar, cinnamon and lemon juice.",
+            "Place one crust in a pie dish.",
+            "Fill with the apple mixture and dot with butter.",
+            "Cover with the second crust and seal the edges.",
+            "Bake at 190°C for about 45 minutes.",
+            "Cool before slicing."
+        ]
+    },
+    {
+        "food": "garlic_bread",
+        "recipe_name": "Cheesy Garlic Bread",
+        "servings": 4,
+        "calories": 320,
+        "protein": 10,
+        "carbs": 36,
+        "fat": 16,
+        "ingredients": [
+            "1 baguette",
+            "3 tablespoons butter",
+            "3 garlic cloves",
+            "1 tablespoon chopped parsley",
+            "80 g mozzarella cheese",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Preheat the oven to 200°C.",
+            "Mix softened butter with minced garlic and parsley.",
+            "Slice the baguette without cutting completely through.",
+            "Spread garlic butter between the slices.",
+            "Add mozzarella cheese.",
+            "Bake for 10–12 minutes until crisp and golden.",
+            "Slice and serve warm."
+        ]
+    },
+    {
+        "food": "samosa",
+        "recipe_name": "Classic Potato Samosa",
+        "servings": 4,
+        "calories": 280,
+        "protein": 6,
+        "carbs": 39,
+        "fat": 11,
+        "ingredients": [
+            "4 samosa pastry sheets",
+            "3 potatoes",
+            "1/2 cup peas",
+            "1 teaspoon cumin seeds",
+            "1/2 teaspoon turmeric",
+            "1/2 teaspoon garam masala",
+            "1 teaspoon lemon juice",
+            "Salt"
+        ],
+        "instructions": [
+            "Boil and mash the potatoes.",
+            "Cook peas with cumin seeds and spices.",
+            "Mix the potatoes and peas together.",
+            "Fill each pastry sheet with the potato mixture.",
+            "Fold into triangular samosas and seal the edges.",
+            "Bake at 200°C until golden or cook using your preferred method.",
+            "Serve warm with chutney."
+        ]
+    },
+    {
+        "food": "apple_pie",
+        "recipe_name": "Classic Apple Pie",
+        "servings": 6,
+        "calories": 420,
+        "protein": 4,
+        "carbs": 58,
+        "fat": 20,
+        "ingredients": [
+            "2 pie crusts",
+            "5 apples",
+            "1/2 cup sugar",
+            "1 teaspoon cinnamon",
+            "1 tablespoon lemon juice",
+            "2 tablespoons butter",
+            "1 tablespoon flour"
+        ],
+        "instructions": [
+            "Peel, core, and slice the apples.",
+            "Mix apples with sugar, cinnamon, lemon juice, and flour.",
+            "Place one pie crust in a pie dish.",
+            "Add the apple filling and dot with butter.",
+            "Cover with the second crust and seal the edges.",
+            "Cut a few small vents in the top crust.",
+            "Bake at 190°C until golden brown.",
+            "Cool slightly and serve."
+        ]
+    },
+    {
+        "food": "baklava",
+        "recipe_name": "Classic Baklava",
+        "servings": 8,
+        "calories": 310,
+        "protein": 5,
+        "carbs": 35,
+        "fat": 18,
+        "ingredients": [
+            "12 sheets phyllo pastry",
+            "1 cup chopped walnuts",
+            "1/2 cup butter",
+            "1 teaspoon cinnamon",
+            "1/2 cup sugar",
+            "1/2 cup water",
+            "2 tablespoons honey",
+            "1 teaspoon lemon juice"
+        ],
+        "instructions": [
+            "Mix chopped walnuts with cinnamon.",
+            "Layer phyllo sheets in a baking dish, brushing each with melted butter.",
+            "Add the walnut mixture between the layers.",
+            "Continue layering until all ingredients are used.",
+            "Cut the baklava into squares or diamonds.",
+            "Bake at 180°C until golden.",
+            "Boil sugar, water, honey, and lemon juice to make the syrup.",
+            "Pour the warm syrup over the baked baklava.",
+            "Allow it to cool before serving."
+        ]
+    },
+    {
+        "food": "beef_carpaccio",
+        "recipe_name": "Classic Beef Carpaccio",
+        "servings": 2,
+        "calories": 280,
+        "protein": 30,
+        "carbs": 4,
+        "fat": 16,
+        "ingredients": [
+            "200g beef tenderloin",
+            "1 tablespoon olive oil",
+            "1 tablespoon lemon juice",
+            "Parmesan cheese",
+            "Arugula",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Chill the beef until very firm.",
+            "Slice the beef into very thin pieces.",
+            "Arrange the slices on a serving plate.",
+            "Drizzle with olive oil and lemon juice.",
+            "Season with salt and black pepper.",
+            "Top with arugula and shaved Parmesan.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "beef_tartare",
+        "recipe_name": "Classic Beef Tartare",
+        "servings": 2,
+        "calories": 350,
+        "protein": 32,
+        "carbs": 5,
+        "fat": 22,
+        "ingredients": [
+            "200g high-quality beef tenderloin",
+            "1 egg yolk",
+            "1 teaspoon Dijon mustard",
+            "1 tablespoon finely chopped onion",
+            "1 teaspoon capers",
+            "1 teaspoon Worcestershire sauce",
+            "Black pepper",
+            "Salt"
+        ],
+        "instructions": [
+            "Chill the beef thoroughly.",
+            "Finely chop the beef using a clean knife.",
+            "Mix the beef with onion and capers.",
+            "Add mustard and Worcestershire sauce.",
+            "Season with salt and black pepper.",
+            "Shape the mixture on a serving plate.",
+            "Top with egg yolk and serve immediately."
+        ]
+    },
+    {
+        "food": "bibimbap",
+        "recipe_name": "Korean Bibimbap",
+        "servings": 2,
+        "calories": 520,
+        "protein": 22,
+        "carbs": 68,
+        "fat": 18,
+        "ingredients": [
+            "2 cups cooked rice",
+            "1 carrot",
+            "1 zucchini",
+            "1 cup spinach",
+            "100g beef",
+            "2 eggs",
+            "1 tablespoon sesame oil",
+            "2 tablespoons gochujang",
+            "Sesame seeds"
+        ],
+        "instructions": [
+            "Cook the rice and keep it warm.",
+            "Slice and sauté the vegetables separately.",
+            "Cook the beef with a little seasoning.",
+            "Fry the eggs sunny-side up.",
+            "Place rice in bowls.",
+            "Arrange vegetables and beef around the rice.",
+            "Place the fried egg on top.",
+            "Add gochujang and sesame oil.",
+            "Garnish with sesame seeds and serve."
+        ]
+    },
+    {
+        "food": "bruschetta",
+        "recipe_name": "Tomato Bruschetta",
+        "servings": 4,
+        "calories": 220,
+        "protein": 6,
+        "carbs": 30,
+        "fat": 9,
+        "ingredients": [
+            "1 baguette",
+            "3 tomatoes",
+            "2 garlic cloves",
+            "2 tablespoons olive oil",
+            "Fresh basil",
+            "1 teaspoon balsamic vinegar",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Dice the tomatoes and place them in a bowl.",
+            "Add chopped basil, olive oil, and balsamic vinegar.",
+            "Season with salt and black pepper.",
+            "Slice the baguette.",
+            "Toast the bread until crisp.",
+            "Rub the toasted bread with garlic.",
+            "Top with the tomato mixture.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "cannoli",
+        "recipe_name": "Classic Cannoli",
+        "servings": 6,
+        "calories": 290,
+        "protein": 8,
+        "carbs": 34,
+        "fat": 14,
+        "ingredients": [
+            "6 cannoli shells",
+            "250g ricotta cheese",
+            "1/3 cup powdered sugar",
+            "1 teaspoon vanilla extract",
+            "1/4 cup chocolate chips",
+            "Orange zest"
+        ],
+        "instructions": [
+            "Drain the ricotta until thick.",
+            "Mix ricotta with powdered sugar and vanilla.",
+            "Fold in chocolate chips and orange zest.",
+            "Fill a piping bag with the ricotta mixture.",
+            "Pipe the filling into both ends of each cannoli shell.",
+            "Dust with powdered sugar.",
+            "Serve chilled."
+        ]
+    },
+    {
+        "food": "caprese_salad",
+        "recipe_name": "Fresh Caprese Salad",
+        "servings": 2,
+        "calories": 280,
+        "protein": 15,
+        "carbs": 8,
+        "fat": 21,
+        "ingredients": [
+            "2 tomatoes",
+            "200g fresh mozzarella",
+            "Fresh basil leaves",
+            "2 tablespoons olive oil",
+            "1 tablespoon balsamic glaze",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Slice the tomatoes and mozzarella.",
+            "Arrange them alternately on a plate.",
+            "Add fresh basil leaves.",
+            "Drizzle with olive oil.",
+            "Add balsamic glaze.",
+            "Season with salt and black pepper.",
+            "Serve fresh."
+        ]
+    },
+    {
+        "food": "carrot_cake",
+        "recipe_name": "Classic Carrot Cake",
+        "servings": 8,
+        "calories": 390,
+        "protein": 5,
+        "carbs": 52,
+        "fat": 18,
+        "ingredients": [
+            "2 cups grated carrots",
+            "2 cups flour",
+            "1 cup sugar",
+            "2 eggs",
+            "1/2 cup vegetable oil",
+            "1 teaspoon cinnamon",
+            "1 teaspoon baking powder",
+            "150g cream cheese",
+            "1/2 cup powdered sugar"
+        ],
+        "instructions": [
+            "Preheat the oven to 180°C.",
+            "Mix flour, baking powder, and cinnamon.",
+            "Whisk eggs, sugar, and oil together.",
+            "Add grated carrots.",
+            "Combine the wet and dry ingredients.",
+            "Pour into a cake pan.",
+            "Bake until a toothpick comes out clean.",
+            "Cool completely.",
+            "Mix cream cheese with powdered sugar and spread over the cake."
+        ]
+    },
+    {
+        "food": "ceviche",
+        "recipe_name": "Fresh Fish Ceviche",
+        "servings": 2,
+        "calories": 240,
+        "protein": 28,
+        "carbs": 12,
+        "fat": 8,
+        "ingredients": [
+            "250g fresh white fish",
+            "1/2 cup lime juice",
+            "1/2 red onion",
+            "1 tomato",
+            "Fresh coriander",
+            "1 chili",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Cut the fish into small cubes.",
+            "Place the fish in a clean bowl.",
+            "Add fresh lime juice.",
+            "Refrigerate until the fish becomes opaque.",
+            "Add sliced onion, tomato, chili, and coriander.",
+            "Season with salt and black pepper.",
+            "Mix gently and serve chilled."
+        ]
+    },
+    {
+        "food": "cheesecake",
+        "recipe_name": "Classic Creamy Cheesecake",
+        "servings": 8,
+        "calories": 430,
+        "protein": 7,
+        "carbs": 38,
+        "fat": 28,
+        "ingredients": [
+            "200g digestive biscuits",
+            "80g melted butter",
+            "500g cream cheese",
+            "1/2 cup sugar",
+            "2 eggs",
+            "1 teaspoon vanilla extract",
+            "1/2 cup sour cream"
+        ],
+        "instructions": [
+            "Crush the biscuits into fine crumbs.",
+            "Mix with melted butter.",
+            "Press the mixture into a cake pan.",
+            "Beat cream cheese with sugar.",
+            "Add eggs, vanilla, and sour cream.",
+            "Pour the filling over the crust.",
+            "Bake at 160°C until set.",
+            "Cool completely before slicing.",
+            "Chill before serving."
+        ]
+    },
+    {
+        "food": "chicken_curry",
+        "recipe_name": "Indian Chicken Curry",
+        "servings": 4,
+        "calories": 420,
+        "protein": 35,
+        "carbs": 14,
+        "fat": 25,
+        "ingredients": [
+            "500g chicken",
+            "2 onions",
+            "2 tomatoes",
+            "1 tablespoon ginger-garlic paste",
+            "1 teaspoon turmeric",
+            "1 teaspoon chili powder",
+            "1 teaspoon garam masala",
+            "1 teaspoon cumin",
+            "2 tablespoons oil",
+            "Salt"
+        ],
+        "instructions": [
+            "Heat oil in a pan.",
+            "Sauté chopped onions until golden.",
+            "Add ginger-garlic paste.",
+            "Add tomatoes and spices.",
+            "Cook until the oil separates.",
+            "Add chicken pieces and mix well.",
+            "Add a little water and cover.",
+            "Cook until the chicken is tender.",
+            "Add garam masala and simmer briefly.",
+            "Serve hot with rice or naan."
+        ]
+    },
+    {
+        "food": "chicken_quesadilla",
+        "recipe_name": "Chicken Quesadilla",
+        "servings": 2,
+        "calories": 510,
+        "protein": 32,
+        "carbs": 42,
+        "fat": 24,
+        "ingredients": [
+            "2 flour tortillas",
+            "200g cooked chicken",
+            "1/2 cup shredded cheese",
+            "1/2 bell pepper",
+            "1/4 onion",
+            "1 tablespoon olive oil",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Slice the cooked chicken and vegetables.",
+            "Heat oil in a pan.",
+            "Sauté the vegetables.",
+            "Add the chicken and season.",
+            "Place one tortilla in a pan.",
+            "Add chicken mixture and cheese.",
+            "Cover with the second tortilla.",
+            "Cook until golden on both sides.",
+            "Cut into wedges and serve."
+        ]
+    },
+    {
+        "food": "chocolate_mousse",
+        "recipe_name": "Easy Chocolate Mousse",
+        "servings": 4,
+        "calories": 330,
+        "protein": 5,
+        "carbs": 28,
+        "fat": 23,
+        "ingredients": [
+            "150g dark chocolate",
+            "1 cup heavy cream",
+            "2 tablespoons sugar",
+            "1 teaspoon vanilla extract"
+        ],
+        "instructions": [
+            "Melt the chocolate gently.",
+            "Allow the chocolate to cool slightly.",
+            "Whip the cream with sugar and vanilla.",
+            "Fold the melted chocolate into the whipped cream.",
+            "Divide into serving glasses.",
+            "Refrigerate for at least 2 hours.",
+            "Serve chilled."
+        ]
+    },
+    {
+        "food": "churros",
+        "recipe_name": "Crispy Cinnamon Churros",
+        "servings": 4,
+        "calories": 320,
+        "protein": 5,
+        "carbs": 42,
+        "fat": 15,
+        "ingredients": [
+            "1 cup flour",
+            "1 cup water",
+            "2 tablespoons sugar",
+            "2 tablespoons butter",
+            "1 egg",
+            "1 teaspoon vanilla",
+            "1/2 cup sugar",
+            "1 teaspoon cinnamon"
+        ],
+        "instructions": [
+            "Boil water, butter, and sugar.",
+            "Add flour and stir until a dough forms.",
+            "Allow the dough to cool slightly.",
+            "Mix in the egg and vanilla.",
+            "Pipe the dough into churro shapes.",
+            "Cook until golden and crisp.",
+            "Mix sugar and cinnamon.",
+            "Coat the warm churros with cinnamon sugar.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "dumplings",
+        "recipe_name": "Steamed Vegetable Dumplings",
+        "servings": 4,
+        "calories": 260,
+        "protein": 9,
+        "carbs": 42,
+        "fat": 7,
+        "ingredients": [
+            "20 dumpling wrappers",
+            "1 cup cabbage",
+            "1 carrot",
+            "1/2 cup mushrooms",
+            "1 tablespoon soy sauce",
+            "1 teaspoon sesame oil",
+            "1 teaspoon grated ginger"
+        ],
+        "instructions": [
+            "Finely chop the vegetables.",
+            "Mix vegetables with soy sauce, sesame oil, and ginger.",
+            "Place a small amount of filling in each wrapper.",
+            "Fold and seal the dumplings.",
+            "Steam for about 8 to 10 minutes.",
+            "Serve hot with dipping sauce."
+        ]
+    },
+    {
+        "food": "falafel",
+        "recipe_name": "Crispy Chickpea Falafel",
+        "servings": 4,
+        "calories": 290,
+        "protein": 12,
+        "carbs": 34,
+        "fat": 13,
+        "ingredients": [
+            "2 cups soaked chickpeas",
+            "1 onion",
+            "3 garlic cloves",
+            "Fresh coriander",
+            "1 teaspoon cumin",
+            "1 teaspoon coriander powder",
+            "1 tablespoon flour",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Drain the soaked chickpeas.",
+            "Blend chickpeas with onion, garlic, and coriander.",
+            "Add cumin, coriander powder, flour, salt, and pepper.",
+            "Shape the mixture into small balls.",
+            "Chill for 20 minutes.",
+            "Cook until golden and crispy.",
+            "Serve with hummus or pita bread."
+        ]
+    },
+    {
+        "food": "fish_and_chips",
+        "recipe_name": "Classic Fish and Chips",
+        "servings": 2,
+        "calories": 620,
+        "protein": 30,
+        "carbs": 65,
+        "fat": 28,
+        "ingredients": [
+            "2 white fish fillets",
+            "3 potatoes",
+            "1 cup flour",
+            "1/2 cup cold water",
+            "1 egg",
+            "Salt",
+            "Black pepper",
+            "Oil for cooking"
+        ],
+        "instructions": [
+            "Cut the potatoes into thick chips.",
+            "Soak and dry the potatoes.",
+            "Prepare a batter using flour, egg, water, salt, and pepper.",
+            "Coat the fish in the batter.",
+            "Cook the fish until golden and crispy.",
+            "Cook the potato chips until crisp.",
+            "Drain excess oil.",
+            "Serve hot with lemon."
+        ]
+    },
+    {
+        "food": "french_onion_soup",
+        "recipe_name": "French Onion Soup",
+        "servings": 4,
+        "calories": 280,
+        "protein": 12,
+        "carbs": 30,
+        "fat": 12,
+        "ingredients": [
+            "4 large onions",
+            "2 tablespoons butter",
+            "4 cups beef or vegetable stock",
+            "1 teaspoon thyme",
+            "4 slices baguette",
+            "1 cup grated Gruyère cheese",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Slice the onions thinly.",
+            "Melt butter in a large pot.",
+            "Cook onions slowly until deeply caramelized.",
+            "Add stock and thyme.",
+            "Simmer for 20 minutes.",
+            "Season with salt and pepper.",
+            "Place soup into oven-safe bowls.",
+            "Top with toasted baguette and cheese.",
+            "Broil until the cheese is melted and golden.",
+            "Serve hot."
+        ]
+    },
+    {
+        "food": "gnocchi",
+        "recipe_name": "Potato Gnocchi",
+        "servings": 4,
+        "calories": 390,
+        "protein": 10,
+        "carbs": 65,
+        "fat": 10,
+        "ingredients": [
+            "500g potatoes",
+            "1 cup flour",
+            "1 egg",
+            "1/2 teaspoon salt",
+            "2 tablespoons butter",
+            "Parmesan cheese",
+            "Fresh herbs"
+        ],
+        "instructions": [
+            "Boil the potatoes until tender.",
+            "Mash the potatoes until smooth.",
+            "Mix with flour, egg, and salt.",
+            "Knead gently into a soft dough.",
+            "Roll the dough into long ropes.",
+            "Cut into small gnocchi pieces.",
+            "Boil until the gnocchi float.",
+            "Drain and sauté with butter.",
+            "Add Parmesan and fresh herbs.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "baby_back_ribs",
+        "recipe_name": "Classic BBQ Baby Back Ribs",
+        "servings": 4,
+        "calories": 620,
+        "protein": 42,
+        "carbs": 28,
+        "fat": 36,
+        "ingredients": [
+            "1.5 kg baby back ribs",
+            "2 tbsp brown sugar",
+            "1 tbsp paprika",
+            "1 tsp garlic powder",
+            "1 tsp onion powder",
+            "1 tsp black pepper",
+            "1 tsp salt",
+            "1 cup BBQ sauce"
+        ],
+        "instructions": [
+            "Remove the membrane from the back of the ribs.",
+            "Mix brown sugar, paprika, garlic powder, onion powder, pepper and salt.",
+            "Rub the seasoning evenly over the ribs.",
+            "Bake covered at 150°C for about 2 hours.",
+            "Brush generously with BBQ sauce.",
+            "Finish uncovered until the sauce becomes sticky and caramelized.",
+            "Rest for 10 minutes before serving."
+        ]
+    },
+    {
+        "food": "beet_salad",
+        "recipe_name": "Roasted Beet Salad",
+        "servings": 2,
+        "calories": 280,
+        "protein": 7,
+        "carbs": 30,
+        "fat": 15,
+        "ingredients": [
+            "3 medium beets",
+            "2 cups mixed greens",
+            "50 g goat cheese",
+            "2 tbsp walnuts",
+            "1 tbsp olive oil",
+            "1 tbsp lemon juice",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Roast the beets until tender.",
+            "Cool, peel and slice the beets.",
+            "Arrange mixed greens on plates.",
+            "Add sliced beets, goat cheese and walnuts.",
+            "Drizzle with olive oil and lemon juice.",
+            "Season with salt and pepper.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "beignets",
+        "recipe_name": "Classic New Orleans Beignets",
+        "servings": 6,
+        "calories": 320,
+        "protein": 6,
+        "carbs": 45,
+        "fat": 14,
+        "ingredients": [
+            "2 cups all-purpose flour",
+            "2 tbsp sugar",
+            "1 tsp instant yeast",
+            "3/4 cup warm milk",
+            "1 egg",
+            "2 tbsp butter",
+            "Pinch of salt",
+            "Powdered sugar"
+        ],
+        "instructions": [
+            "Combine flour, sugar, yeast and salt.",
+            "Add warm milk, egg and melted butter.",
+            "Knead into a soft dough.",
+            "Let the dough rise until doubled.",
+            "Roll and cut into rectangles.",
+            "Fry until golden brown.",
+            "Drain and dust generously with powdered sugar."
+        ]
+    },
+    {
+        "food": "bread_pudding",
+        "recipe_name": "Classic Bread Pudding",
+        "servings": 6,
+        "calories": 390,
+        "protein": 9,
+        "carbs": 54,
+        "fat": 16,
+        "ingredients": [
+            "6 cups cubed bread",
+            "2 cups milk",
+            "3 eggs",
+            "1/2 cup sugar",
+            "1 tsp vanilla",
+            "1 tsp cinnamon",
+            "2 tbsp butter",
+            "1/2 cup raisins"
+        ],
+        "instructions": [
+            "Place bread cubes in a baking dish.",
+            "Whisk milk, eggs, sugar, vanilla and cinnamon.",
+            "Pour the mixture over the bread.",
+            "Add raisins and let the bread soak.",
+            "Dot the top with butter.",
+            "Bake at 175°C until golden and set.",
+            "Cool slightly before serving."
+        ]
+    },
+    {
+        "food": "breakfast_burrito",
+        "recipe_name": "Loaded Breakfast Burrito",
+        "servings": 2,
+        "calories": 520,
+        "protein": 27,
+        "carbs": 48,
+        "fat": 25,
+        "ingredients": [
+            "2 large flour tortillas",
+            "4 eggs",
+            "1/2 cup cooked potatoes",
+            "1/2 cup shredded cheese",
+            "1/4 cup diced onion",
+            "1/4 cup diced tomato",
+            "2 tbsp salsa",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Scramble the eggs with salt and pepper.",
+            "Warm the potatoes in a skillet.",
+            "Place tortillas on a flat surface.",
+            "Add eggs, potatoes, cheese, onion and tomato.",
+            "Top with salsa.",
+            "Fold the sides inward and roll tightly.",
+            "Toast the burritos lightly before serving."
+        ]
+    },
+    {
+        "food": "cheese_plate",
+        "recipe_name": "Artisan Cheese Plate",
+        "servings": 4,
+        "calories": 430,
+        "protein": 20,
+        "carbs": 20,
+        "fat": 32,
+        "ingredients": [
+            "100 g cheddar cheese",
+            "100 g brie",
+            "100 g gouda",
+            "1/2 cup grapes",
+            "1/4 cup walnuts",
+            "2 tbsp honey",
+            "Crackers"
+        ],
+        "instructions": [
+            "Slice the cheeses into bite-sized pieces.",
+            "Arrange the cheeses on a serving board.",
+            "Add grapes and walnuts.",
+            "Place crackers around the cheese.",
+            "Drizzle honey over the board.",
+            "Serve at room temperature."
+        ]
+    },
+    {
+        "food": "clam_chowder",
+        "recipe_name": "Creamy Clam Chowder",
+        "servings": 4,
+        "calories": 390,
+        "protein": 19,
+        "carbs": 32,
+        "fat": 21,
+        "ingredients": [
+            "400 g clams",
+            "2 potatoes",
+            "1 onion",
+            "2 celery stalks",
+            "2 cups milk",
+            "1 cup cream",
+            "2 tbsp butter",
+            "1 tbsp flour",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Melt butter and sauté onion and celery.",
+            "Add flour and stir until smooth.",
+            "Gradually add milk and cream.",
+            "Add diced potatoes and cook until tender.",
+            "Add cleaned clams and simmer until cooked.",
+            "Season with salt and pepper.",
+            "Serve hot."
+        ]
+    },
+    {
+        "food": "creme_brulee",
+        "recipe_name": "Classic Crème Brûlée",
+        "servings": 4,
+        "calories": 380,
+        "protein": 6,
+        "carbs": 28,
+        "fat": 27,
+        "ingredients": [
+            "2 cups heavy cream",
+            "5 egg yolks",
+            "1/3 cup sugar",
+            "1 tsp vanilla",
+            "4 tbsp sugar for topping"
+        ],
+        "instructions": [
+            "Heat cream with vanilla until warm.",
+            "Whisk egg yolks with sugar.",
+            "Slowly whisk the warm cream into the yolks.",
+            "Pour into ramekins.",
+            "Bake in a water bath until just set.",
+            "Cool completely.",
+            "Sprinkle sugar on top and caramelize carefully before serving."
+        ]
+    },
+    {
+        "food": "crab_cakes",
+        "recipe_name": "Golden Crab Cakes",
+        "servings": 4,
+        "calories": 310,
+        "protein": 25,
+        "carbs": 18,
+        "fat": 15,
+        "ingredients": [
+            "400 g crab meat",
+            "1 egg",
+            "1/2 cup breadcrumbs",
+            "2 tbsp mayonnaise",
+            "1 tsp mustard",
+            "1 tbsp lemon juice",
+            "2 tbsp chopped parsley",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Combine crab meat, egg, breadcrumbs, mayonnaise and mustard.",
+            "Add lemon juice and parsley.",
+            "Season with salt and pepper.",
+            "Form into small patties.",
+            "Chill the patties briefly.",
+            "Pan-sear until golden and cooked through.",
+            "Serve with lemon."
+        ]
+    },
+    {
+        "food": "croque_madame",
+        "recipe_name": "Classic Croque Madame",
+        "servings": 2,
+        "calories": 610,
+        "protein": 32,
+        "carbs": 40,
+        "fat": 37,
+        "ingredients": [
+            "4 slices bread",
+            "4 slices ham",
+            "1 cup grated Gruyère cheese",
+            "1 cup béchamel sauce",
+            "2 eggs",
+            "1 tbsp butter",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Spread béchamel over the bread.",
+            "Add ham and cheese between the slices.",
+            "Toast until the cheese melts.",
+            "Top with more béchamel and cheese.",
+            "Bake until bubbling and golden.",
+            "Fry the eggs separately.",
+            "Place one egg on each sandwich before serving."
+        ]
+    },
+    {
+        "food": "cup_cakes",
+        "recipe_name": "Classic Vanilla Cupcakes",
+        "servings": 8,
+        "calories": 290,
+        "protein": 4,
+        "carbs": 39,
+        "fat": 13,
+        "ingredients": [
+            "1 cup flour",
+            "1/2 cup sugar",
+            "1/2 cup butter",
+            "2 eggs",
+            "1 tsp vanilla",
+            "1 tsp baking powder",
+            "1/3 cup milk"
+        ],
+        "instructions": [
+            "Cream butter and sugar together.",
+            "Beat in the eggs and vanilla.",
+            "Add flour and baking powder.",
+            "Mix in milk until smooth.",
+            "Divide batter into cupcake liners.",
+            "Bake at 175°C until golden.",
+            "Cool and decorate as desired."
+        ]
+    },
+    {
+        "food": "deviled_eggs",
+        "recipe_name": "Classic Deviled Eggs",
+        "servings": 4,
+        "calories": 210,
+        "protein": 12,
+        "carbs": 3,
+        "fat": 17,
+        "ingredients": [
+            "6 eggs",
+            "3 tbsp mayonnaise",
+            "1 tsp mustard",
+            "1 tsp lemon juice",
+            "Paprika",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Boil the eggs until fully cooked.",
+            "Cool and peel the eggs.",
+            "Slice each egg in half.",
+            "Remove the yolks and mash them.",
+            "Mix yolks with mayonnaise, mustard and lemon juice.",
+            "Season with salt and pepper.",
+            "Pipe the filling into the egg whites.",
+            "Sprinkle with paprika."
+        ]
+    },
+    {
+        "food": "edamame",
+        "recipe_name": "Garlic Chili Edamame",
+        "servings": 2,
+        "calories": 190,
+        "protein": 17,
+        "carbs": 14,
+        "fat": 8,
+        "ingredients": [
+            "300 g edamame",
+            "2 cloves garlic",
+            "1 tsp chili flakes",
+            "1 tsp sesame oil",
+            "1 tsp soy sauce"
+        ],
+        "instructions": [
+            "Steam or boil the edamame until tender.",
+            "Heat sesame oil in a pan.",
+            "Sauté garlic briefly.",
+            "Add chili flakes and soy sauce.",
+            "Toss in the edamame.",
+            "Cook for 1–2 minutes.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "eggs_benedict",
+        "recipe_name": "Classic Eggs Benedict",
+        "servings": 2,
+        "calories": 480,
+        "protein": 24,
+        "carbs": 27,
+        "fat": 30,
+        "ingredients": [
+            "2 English muffins",
+            "4 eggs",
+            "4 slices ham",
+            "2 egg yolks",
+            "100 g butter",
+            "1 tbsp lemon juice",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Toast the English muffins.",
+            "Warm the ham.",
+            "Prepare poached eggs until the whites are set.",
+            "Whisk egg yolks with lemon juice.",
+            "Slowly whisk in melted butter to make hollandaise.",
+            "Place ham on the muffins.",
+            "Top with poached eggs and hollandaise.",
+            "Season with pepper."
+        ]
+    },
+    {
+        "food": "escargots",
+        "recipe_name": "Garlic Butter Escargots",
+        "servings": 2,
+        "calories": 290,
+        "protein": 18,
+        "carbs": 5,
+        "fat": 22,
+        "ingredients": [
+            "200 g cleaned escargots",
+            "4 tbsp butter",
+            "3 cloves garlic",
+            "2 tbsp parsley",
+            "1 tbsp lemon juice",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Melt butter in a skillet.",
+            "Add minced garlic and cook briefly.",
+            "Add the cleaned escargots.",
+            "Cook thoroughly until heated through.",
+            "Add parsley and lemon juice.",
+            "Season with black pepper.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "filet_mignon",
+        "recipe_name": "Garlic Butter Filet Mignon",
+        "servings": 2,
+        "calories": 520,
+        "protein": 48,
+        "carbs": 2,
+        "fat": 34,
+        "ingredients": [
+            "2 filet mignon steaks",
+            "1 tbsp olive oil",
+            "2 tbsp butter",
+            "2 cloves garlic",
+            "1 sprig rosemary",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Season the steaks generously with salt and pepper.",
+            "Heat olive oil in a heavy skillet.",
+            "Sear the steaks on both sides.",
+            "Add butter, garlic and rosemary.",
+            "Baste the steaks with the butter.",
+            "Cook to your preferred safe doneness using a thermometer.",
+            "Rest before serving."
+        ]
+    },
+    {
+        "food": "foie_gras",
+        "recipe_name": "Seared Foie Gras",
+        "servings": 2,
+        "calories": 460,
+        "protein": 10,
+        "carbs": 12,
+        "fat": 40,
+        "ingredients": [
+            "200 g foie gras",
+            "1 tbsp sugar",
+            "1 apple",
+            "1 tbsp butter",
+            "1 tbsp balsamic glaze",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Slice the foie gras into thick pieces.",
+            "Season lightly with salt and pepper.",
+            "Heat a dry skillet over medium-high heat.",
+            "Sear briefly on both sides until golden.",
+            "Cook the apple slices in butter.",
+            "Arrange apple slices with the foie gras.",
+            "Drizzle with balsamic glaze."
+        ]
+    },
+    {
+        "food": "french_toast",
+        "recipe_name": "Cinnamon French Toast",
+        "servings": 2,
+        "calories": 410,
+        "protein": 13,
+        "carbs": 48,
+        "fat": 19,
+        "ingredients": [
+            "4 thick bread slices",
+            "2 eggs",
+            "1/2 cup milk",
+            "1 tsp cinnamon",
+            "1 tsp vanilla",
+            "1 tbsp butter",
+            "Maple syrup",
+            "Fresh berries"
+        ],
+        "instructions": [
+            "Whisk eggs, milk, cinnamon and vanilla.",
+            "Dip each bread slice into the mixture.",
+            "Heat butter in a skillet.",
+            "Cook the bread on both sides until golden.",
+            "Serve with maple syrup and berries."
+        ]
+    },
+    {
+        "food": "fried_calamari",
+        "recipe_name": "Crispy Fried Calamari",
+        "servings": 3,
+        "calories": 380,
+        "protein": 23,
+        "carbs": 36,
+        "fat": 17,
+        "ingredients": [
+            "500 g cleaned calamari",
+            "1 cup flour",
+            "1/2 tsp paprika",
+            "1/2 tsp garlic powder",
+            "Salt",
+            "Black pepper",
+            "Lemon wedges"
+        ],
+        "instructions": [
+            "Cut calamari into rings.",
+            "Pat the calamari dry.",
+            "Mix flour with paprika, garlic powder, salt and pepper.",
+            "Coat the calamari evenly.",
+            "Fry in hot oil until golden and cooked.",
+            "Drain on a rack or paper towel.",
+            "Serve with lemon wedges."
+        ]
+    },
+    {
+        "food": "frozen_yogurt",
+        "recipe_name": "Berry Frozen Yogurt",
+        "servings": 4,
+        "calories": 180,
+        "protein": 8,
+        "carbs": 28,
+        "fat": 4,
+        "ingredients": [
+            "2 cups Greek yogurt",
+            "1 cup mixed berries",
+            "1/4 cup honey",
+            "1 tsp vanilla"
+        ],
+        "instructions": [
+            "Blend berries until smooth.",
+            "Mix yogurt, honey and vanilla.",
+            "Swirl the berry puree into the yogurt.",
+            "Transfer to a freezer-safe container.",
+            "Freeze until firm.",
+            "Let soften slightly before serving."
+        ]
+    },
+    {
+        "food": "greek_salad",
+        "recipe_name": "Fresh Greek Salad",
+        "servings": 2,
+        "calories": 280,
+        "protein": 9,
+        "carbs": 15,
+        "fat": 21,
+        "ingredients": [
+            "2 tomatoes",
+            "1 cucumber",
+            "1/2 red onion",
+            "1/2 cup feta cheese",
+            "1/4 cup olives",
+            "2 tbsp olive oil",
+            "1 tbsp lemon juice",
+            "Oregano",
+            "Salt"
+        ],
+        "instructions": [
+            "Chop the tomatoes and cucumber.",
+            "Slice the red onion.",
+            "Combine vegetables with olives.",
+            "Add feta cheese.",
+            "Drizzle with olive oil and lemon juice.",
+            "Sprinkle with oregano.",
+            "Season lightly with salt."
+        ]
+    },
+    {
+        "food": "gyoza",
+        "recipe_name": "Japanese Chicken Gyoza",
+        "servings": 3,
+        "calories": 340,
+        "protein": 20,
+        "carbs": 38,
+        "fat": 13,
+        "ingredients": [
+            "250 g ground chicken",
+            "1 cup finely chopped cabbage",
+            "2 green onions",
+            "1 tsp grated ginger",
+            "1 tbsp soy sauce",
+            "1 tsp sesame oil",
+            "Gyoza wrappers"
+        ],
+        "instructions": [
+            "Mix chicken, cabbage, green onion and ginger.",
+            "Add soy sauce and sesame oil.",
+            "Place filling into gyoza wrappers.",
+            "Fold and seal the wrappers.",
+            "Pan-fry the gyoza until the bottoms are golden.",
+            "Add a small amount of water and cover.",
+            "Steam until the filling is thoroughly cooked.",
+            "Serve with dipping sauce."
+        ]
+    },
+    {
+        "food": "guacamole",
+        "recipe_name": "Fresh Homemade Guacamole",
+        "servings": 4,
+        "calories": 220,
+        "protein": 3,
+        "carbs": 12,
+        "fat": 19,
+        "ingredients": [
+            "3 ripe avocados",
+            "1 tomato",
+            "1/4 red onion",
+            "1 lime",
+            "2 tbsp cilantro",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Mash the avocados in a bowl.",
+            "Dice the tomato and onion.",
+            "Add tomato, onion and cilantro.",
+            "Squeeze fresh lime juice over the mixture.",
+            "Season with salt and pepper.",
+            "Mix gently and serve."
+        ]
+    },
+    {
+        "food": "hot_and_sour_soup",
+        "recipe_name": "Chinese Hot and Sour Soup",
+        "servings": 4,
+        "calories": 190,
+        "protein": 12,
+        "carbs": 18,
+        "fat": 7,
+        "ingredients": [
+            "4 cups chicken or vegetable stock",
+            "150 g mushrooms",
+            "100 g tofu",
+            "2 tbsp soy sauce",
+            "2 tbsp rice vinegar",
+            "1 tsp chili paste",
+            "1 egg",
+            "1 tbsp cornstarch",
+            "2 green onions"
+        ],
+        "instructions": [
+            "Bring stock to a simmer.",
+            "Add mushrooms and tofu.",
+            "Stir in soy sauce, vinegar and chili paste.",
+            "Mix cornstarch with water and add to the soup.",
+            "Slowly pour in the beaten egg while stirring.",
+            "Simmer until slightly thickened.",
+            "Garnish with green onions."
+        ]
+    },
+    {
+        "food": "hot_dog",
+        "recipe_name": "Classic Loaded Hot Dog",
+        "servings": 2,
+        "calories": 390,
+        "protein": 17,
+        "carbs": 34,
+        "fat": 21,
+        "ingredients": [
+            "2 hot dog sausages",
+            "2 hot dog buns",
+            "2 tbsp mustard",
+            "2 tbsp ketchup",
+            "1/4 cup diced onion",
+            "Pickle relish"
+        ],
+        "instructions": [
+            "Cook the sausages thoroughly according to package instructions.",
+            "Toast the buns lightly.",
+            "Place the sausages inside the buns.",
+            "Add mustard and ketchup.",
+            "Top with onion and relish.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "huevos_rancheros",
+        "recipe_name": "Mexican Huevos Rancheros",
+        "servings": 2,
+        "calories": 420,
+        "protein": 22,
+        "carbs": 34,
+        "fat": 23,
+        "ingredients": [
+            "4 eggs",
+            "2 corn tortillas",
+            "2 tomatoes",
+            "1/2 onion",
+            "1 chili",
+            "1/2 cup black beans",
+            "1/4 cup cheese",
+            "Cilantro",
+            "Salt"
+        ],
+        "instructions": [
+            "Cook tomatoes, onion and chili into a simple salsa.",
+            "Warm the black beans.",
+            "Toast the tortillas.",
+            "Cook the eggs until the whites are set.",
+            "Place tortillas on plates.",
+            "Add beans and eggs.",
+            "Top with salsa, cheese and cilantro."
+        ]
+    },
+    {
+        "food": "hummus",
+        "recipe_name": "Creamy Homemade Hummus",
+        "servings": 4,
+        "calories": 240,
+        "protein": 8,
+        "carbs": 21,
+        "fat": 15,
+        "ingredients": [
+            "1 can chickpeas",
+            "1/4 cup tahini",
+            "2 tbsp lemon juice",
+            "1 garlic clove",
+            "2 tbsp olive oil",
+            "Salt",
+            "Water as needed"
+        ],
+        "instructions": [
+            "Drain and rinse the chickpeas.",
+            "Blend chickpeas, tahini, lemon juice and garlic.",
+            "Add olive oil.",
+            "Blend until smooth.",
+            "Add water gradually to reach the desired texture.",
+            "Season with salt.",
+            "Serve with olive oil on top."
+        ]
+    },
+    {
+        "food": "lobster_bisque",
+        "recipe_name": "Creamy Lobster Bisque",
+        "servings": 4,
+        "calories": 360,
+        "protein": 25,
+        "carbs": 18,
+        "fat": 23,
+        "ingredients": [
+            "400 g cooked lobster meat",
+            "1 onion",
+            "1 carrot",
+            "1 celery stalk",
+            "2 cups seafood stock",
+            "1 cup cream",
+            "2 tbsp butter",
+            "1 tbsp tomato paste",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Sauté onion, carrot and celery in butter.",
+            "Add tomato paste and cook briefly.",
+            "Pour in seafood stock.",
+            "Simmer until the vegetables are tender.",
+            "Blend until smooth.",
+            "Add cream and lobster meat.",
+            "Heat gently without boiling.",
+            "Season and serve."
+        ]
+    },
+    {
+        "food": "lobster_roll_sandwich",
+        "recipe_name": "Classic Lobster Roll",
+        "servings": 2,
+        "calories": 470,
+        "protein": 31,
+        "carbs": 38,
+        "fat": 21,
+        "ingredients": [
+            "300 g cooked lobster meat",
+            "2 split-top buns",
+            "2 tbsp mayonnaise",
+            "1 tbsp lemon juice",
+            "1 celery stalk",
+            "1 tbsp chives",
+            "1 tbsp butter",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Chop the cooked lobster meat.",
+            "Mix lobster with mayonnaise, lemon juice and celery.",
+            "Add chives, salt and pepper.",
+            "Butter the buns.",
+            "Toast the buns lightly.",
+            "Fill the buns with lobster mixture.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "macarons",
+        "recipe_name": "French Almond Macarons",
+        "servings": 8,
+        "calories": 190,
+        "protein": 4,
+        "carbs": 25,
+        "fat": 9,
+        "ingredients": [
+            "1 cup almond flour",
+            "1 1/2 cups powdered sugar",
+            "3 egg whites",
+            "1/4 cup sugar",
+            "1 tsp vanilla",
+            "Buttercream filling"
+        ],
+        "instructions": [
+            "Sift almond flour and powdered sugar.",
+            "Whip egg whites with sugar until glossy.",
+            "Fold the dry ingredients into the meringue.",
+            "Pipe small circles onto a baking tray.",
+            "Let them rest before baking.",
+            "Bake until the shells are set.",
+            "Cool completely.",
+            "Sandwich with buttercream."
+        ]
+    },
+    {
+        "food": "miso_soup",
+        "recipe_name": "Japanese Miso Soup",
+        "servings": 2,
+        "calories": 90,
+        "protein": 6,
+        "carbs": 9,
+        "fat": 3,
+        "ingredients": [
+            "3 cups dashi or vegetable stock",
+            "2 tbsp miso paste",
+            "100 g tofu",
+            "1 tbsp wakame",
+            "2 green onions"
+        ],
+        "instructions": [
+            "Heat the stock gently.",
+            "Soak wakame until softened.",
+            "Add tofu and wakame.",
+            "Turn off the heat.",
+            "Dissolve miso paste in a small amount of warm broth.",
+            "Return the mixture to the pot.",
+            "Garnish with green onions.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "mussels",
+        "recipe_name": "Garlic White Wine Mussels",
+        "servings": 2,
+        "calories": 330,
+        "protein": 30,
+        "carbs": 12,
+        "fat": 15,
+        "ingredients": [
+            "1 kg fresh mussels",
+            "3 cloves garlic",
+            "1 cup white wine",
+            "2 tbsp butter",
+            "2 tbsp parsley",
+            "1 tbsp lemon juice"
+        ],
+        "instructions": [
+            "Clean and rinse the mussels.",
+            "Sauté garlic in butter.",
+            "Add white wine.",
+            "Add mussels and cover the pan.",
+            "Steam until the mussels open and are fully cooked.",
+            "Discard any mussels that remain closed.",
+            "Add parsley and lemon juice.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "nachos",
+        "recipe_name": "Loaded Cheesy Nachos",
+        "servings": 4,
+        "calories": 510,
+        "protein": 21,
+        "carbs": 48,
+        "fat": 28,
+        "ingredients": [
+            "200 g tortilla chips",
+            "1 cup shredded cheddar cheese",
+            "1/2 cup black beans",
+            "1 tomato",
+            "1/4 onion",
+            "1 jalapeño",
+            "1/4 cup sour cream",
+            "Salsa"
+        ],
+        "instructions": [
+            "Spread tortilla chips on a baking tray.",
+            "Add cheese and black beans.",
+            "Bake until the cheese melts.",
+            "Top with tomato, onion and jalapeño.",
+            "Add salsa and sour cream.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "omelette",
+        "recipe_name": "Vegetable Cheese Omelette",
+        "servings": 1,
+        "calories": 320,
+        "protein": 21,
+        "carbs": 8,
+        "fat": 23,
+        "ingredients": [
+            "3 eggs",
+            "1/4 cup bell pepper",
+            "1/4 cup onion",
+            "1/4 cup mushrooms",
+            "1/4 cup shredded cheese",
+            "1 tsp butter",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Whisk the eggs with salt and pepper.",
+            "Sauté the vegetables in butter.",
+            "Pour in the eggs.",
+            "Cook until the bottom is set.",
+            "Add cheese to one side.",
+            "Fold the omelette.",
+            "Cook until the eggs are fully set.",
+            "Serve hot."
+        ]
+    },
+    {
+        "food": "onion_rings",
+        "recipe_name": "Crispy Onion Rings",
+        "servings": 3,
+        "calories": 360,
+        "protein": 7,
+        "carbs": 48,
+        "fat": 16,
+        "ingredients": [
+            "2 large onions",
+            "1 cup flour",
+            "1 egg",
+            "1 cup breadcrumbs",
+            "1/2 tsp paprika",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Slice onions into rings.",
+            "Separate the rings.",
+            "Coat each ring in flour.",
+            "Dip into beaten egg.",
+            "Coat with breadcrumbs.",
+            "Fry until golden and crispy.",
+            "Drain and season with salt."
+        ]
+    },
+    {
+        "food": "oysters",
+        "recipe_name": "Classic Baked Garlic Oysters",
+        "servings": 2,
+        "calories": 230,
+        "protein": 18,
+        "carbs": 8,
+        "fat": 14,
+        "ingredients": [
+            "12 fresh oysters",
+            "2 tbsp butter",
+            "2 cloves garlic",
+            "2 tbsp breadcrumbs",
+            "1 tbsp parsley",
+            "1 tbsp lemon juice"
+        ],
+        "instructions": [
+            "Carefully clean and shuck the oysters.",
+            "Arrange them securely on a baking tray.",
+            "Mix melted butter with garlic and parsley.",
+            "Spoon the mixture over the oysters.",
+            "Sprinkle with breadcrumbs.",
+            "Bake until the oysters are thoroughly cooked.",
+            "Finish with lemon juice.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "pad_thai",
+        "recipe_name": "Classic Chicken Pad Thai",
+        "servings": 2,
+        "calories": 520,
+        "protein": 29,
+        "carbs": 65,
+        "fat": 17,
+        "ingredients": [
+            "180 g rice noodles",
+            "200 g chicken breast",
+            "1 egg",
+            "1/2 cup bean sprouts",
+            "2 green onions",
+            "2 tbsp crushed peanuts",
+            "2 tbsp fish sauce",
+            "1 tbsp lime juice",
+            "1 tbsp brown sugar"
+        ],
+        "instructions": [
+            "Soak the rice noodles until softened.",
+            "Cook the chicken in a hot wok.",
+            "Add the egg and scramble.",
+            "Add the noodles.",
+            "Mix fish sauce, lime juice and brown sugar.",
+            "Pour the sauce into the wok.",
+            "Toss with bean sprouts and green onions.",
+            "Top with crushed peanuts."
+        ]
+    },
+    {
+        "food": "paella",
+        "recipe_name": "Spanish Chicken Paella",
+        "servings": 4,
+        "calories": 560,
+        "protein": 31,
+        "carbs": 65,
+        "fat": 19,
+        "ingredients": [
+            "2 cups short-grain rice",
+            "300 g chicken",
+            "1 onion",
+            "1 bell pepper",
+            "1 cup peas",
+            "4 cups chicken stock",
+            "1 tsp paprika",
+            "1/2 tsp saffron",
+            "2 tbsp olive oil",
+            "Salt"
+        ],
+        "instructions": [
+            "Heat olive oil in a wide pan.",
+            "Brown the chicken pieces.",
+            "Add onion and bell pepper.",
+            "Stir in paprika and rice.",
+            "Add stock and saffron.",
+            "Arrange the chicken evenly.",
+            "Cook without excessive stirring until the rice is tender.",
+            "Add peas near the end.",
+            "Rest briefly before serving."
+        ]
+    },
+    {
+        "food": "panna_cotta",
+        "recipe_name": "Vanilla Panna Cotta",
+        "servings": 4,
+        "calories": 310,
+        "protein": 5,
+        "carbs": 24,
+        "fat": 22,
+        "ingredients": [
+            "2 cups heavy cream",
+            "1/3 cup sugar",
+            "1 tsp vanilla",
+            "2 tsp gelatin",
+            "3 tbsp water",
+            "Fresh berries"
+        ],
+        "instructions": [
+            "Bloom gelatin in cold water.",
+            "Heat cream, sugar and vanilla gently.",
+            "Remove from heat.",
+            "Stir in the gelatin.",
+            "Pour into serving glasses.",
+            "Refrigerate until set.",
+            "Serve with fresh berries."
+        ]
+    },
+    {
+        "food": "peking_duck",
+        "recipe_name": "Crispy Peking Duck",
+        "servings": 4,
+        "calories": 590,
+        "protein": 38,
+        "carbs": 24,
+        "fat": 39,
+        "ingredients": [
+            "1 whole duck",
+            "2 tbsp honey",
+            "1 tbsp soy sauce",
+            "1 tsp five-spice powder",
+            "Chinese pancakes",
+            "Cucumber",
+            "Spring onions"
+        ],
+        "instructions": [
+            "Clean and prepare the duck.",
+            "Brush the skin with a mixture of honey and soy sauce.",
+            "Season lightly with five-spice powder.",
+            "Roast until the skin is crisp and the duck is thoroughly cooked.",
+            "Rest before carving.",
+            "Slice the meat and crispy skin.",
+            "Serve with pancakes, cucumber and spring onions."
+        ]
+    },
+    {
+        "food": "pho",
+        "recipe_name": "Vietnamese Chicken Pho",
+        "servings": 4,
+        "calories": 430,
+        "protein": 29,
+        "carbs": 53,
+        "fat": 10,
+        "ingredients": [
+            "200 g rice noodles",
+            "500 g chicken",
+            "6 cups chicken broth",
+            "1 onion",
+            "1 piece ginger",
+            "1 cinnamon stick",
+            "2 star anise",
+            "Bean sprouts",
+            "Fresh herbs",
+            "Lime"
+        ],
+        "instructions": [
+            "Simmer chicken broth with onion, ginger, cinnamon and star anise.",
+            "Cook the chicken thoroughly and shred it.",
+            "Prepare rice noodles according to package instructions.",
+            "Strain the broth.",
+            "Place noodles in bowls.",
+            "Add shredded chicken.",
+            "Pour hot broth over the noodles.",
+            "Top with bean sprouts, herbs and lime."
+        ]
+    },
+    {
+        "food": "pork_chop",
+        "recipe_name": "Herb Garlic Pork Chops",
+        "servings": 2,
+        "calories": 480,
+        "protein": 42,
+        "carbs": 5,
+        "fat": 32,
+        "ingredients": [
+            "2 pork chops",
+            "1 tbsp olive oil",
+            "2 tbsp butter",
+            "2 cloves garlic",
+            "1 tsp rosemary",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Season pork chops with salt and pepper.",
+            "Heat olive oil in a skillet.",
+            "Sear the pork chops on both sides.",
+            "Add butter, garlic and rosemary.",
+            "Baste the chops.",
+            "Cook until they reach a safe internal temperature.",
+            "Rest before serving."
+        ]
+    },
+    {
+        "food": "poutine",
+        "recipe_name": "Classic Canadian Poutine",
+        "servings": 3,
+        "calories": 620,
+        "protein": 18,
+        "carbs": 72,
+        "fat": 30,
+        "ingredients": [
+            "500 g potatoes",
+            "1 cup cheese curds",
+            "1 cup beef gravy",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Cut potatoes into fries.",
+            "Cook the fries until golden and crispy.",
+            "Heat the gravy.",
+            "Place fries on serving plates.",
+            "Top with cheese curds.",
+            "Pour hot gravy over the fries.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "prime_rib",
+        "recipe_name": "Herb Crusted Prime Rib",
+        "servings": 6,
+        "calories": 680,
+        "protein": 49,
+        "carbs": 3,
+        "fat": 51,
+        "ingredients": [
+            "1.5 kg prime rib roast",
+            "2 tbsp olive oil",
+            "3 cloves garlic",
+            "1 tbsp rosemary",
+            "1 tbsp thyme",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Pat the roast dry.",
+            "Rub with olive oil, garlic and herbs.",
+            "Season generously with salt and pepper.",
+            "Roast until the desired safe internal temperature is reached.",
+            "Rest the roast before slicing.",
+            "Slice and serve with pan juices."
+        ]
+    },
+    {
+        "food": "pulled_pork_sandwich",
+        "recipe_name": "BBQ Pulled Pork Sandwich",
+        "servings": 4,
+        "calories": 540,
+        "protein": 36,
+        "carbs": 51,
+        "fat": 22,
+        "ingredients": [
+            "700 g pork shoulder",
+            "1 cup BBQ sauce",
+            "4 burger buns",
+            "1 cup coleslaw",
+            "1 onion",
+            "1 tsp paprika",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Season the pork with paprika, salt and pepper.",
+            "Slow-cook the pork until tender and thoroughly cooked.",
+            "Shred the pork with forks.",
+            "Mix with BBQ sauce.",
+            "Toast the buns.",
+            "Fill each bun with pulled pork.",
+            "Top with coleslaw.",
+            "Serve warm."
+        ]
+    },
+    {
+        "food": "ravioli",
+        "recipe_name": "Cheese Ravioli with Tomato Sauce",
+        "servings": 2,
+        "calories": 490,
+        "protein": 20,
+        "carbs": 62,
+        "fat": 18,
+        "ingredients": [
+            "250 g cheese ravioli",
+            "1 cup tomato sauce",
+            "1/4 cup Parmesan cheese",
+            "1 tbsp olive oil",
+            "1 clove garlic",
+            "Fresh basil"
+        ],
+        "instructions": [
+            "Boil ravioli according to package instructions.",
+            "Heat olive oil in a pan.",
+            "Sauté garlic briefly.",
+            "Add tomato sauce.",
+            "Add cooked ravioli.",
+            "Toss gently with the sauce.",
+            "Top with Parmesan and basil."
+        ]
+    },
+    {
+        "food": "red_velvet_cake",
+        "recipe_name": "Classic Red Velvet Cake",
+        "servings": 8,
+        "calories": 470,
+        "protein": 6,
+        "carbs": 61,
+        "fat": 23,
+        "ingredients": [
+            "2 cups flour",
+            "1 cup sugar",
+            "2 eggs",
+            "1/2 cup butter",
+            "1 cup buttermilk",
+            "2 tbsp cocoa powder",
+            "1 tsp vanilla",
+            "Red food coloring",
+            "Cream cheese frosting"
+        ],
+        "instructions": [
+            "Cream butter and sugar.",
+            "Beat in eggs and vanilla.",
+            "Mix flour and cocoa separately.",
+            "Add dry ingredients alternately with buttermilk.",
+            "Add red food coloring.",
+            "Bake until a toothpick comes out clean.",
+            "Cool completely.",
+            "Frost with cream cheese frosting."
+        ]
+    },
+    {
+        "food": "risotto",
+        "recipe_name": "Creamy Mushroom Risotto",
+        "servings": 3,
+        "calories": 430,
+        "protein": 11,
+        "carbs": 61,
+        "fat": 16,
+        "ingredients": [
+            "1 cup Arborio rice",
+            "200 g mushrooms",
+            "4 cups vegetable stock",
+            "1 onion",
+            "2 tbsp butter",
+            "1/2 cup Parmesan",
+            "1/2 cup white wine",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Sauté onion and mushrooms in butter.",
+            "Add Arborio rice and toast lightly.",
+            "Pour in white wine.",
+            "Add warm stock one ladle at a time.",
+            "Stir regularly until the rice becomes creamy and tender.",
+            "Stir in Parmesan.",
+            "Season with black pepper.",
+            "Serve immediately."
+        ]
+    },
+    {
+        "food": "sashimi",
+        "recipe_name": "Fresh Salmon Sashimi",
+        "servings": 2,
+        "calories": 240,
+        "protein": 30,
+        "carbs": 2,
+        "fat": 12,
+        "ingredients": [
+            "250 g sushi-grade salmon",
+            "Soy sauce",
+            "Wasabi",
+            "Pickled ginger",
+            "Daikon radish"
+        ],
+        "instructions": [
+            "Use properly handled sushi-grade salmon from a reputable source.",
+            "Keep the fish properly chilled.",
+            "Slice the salmon into thin even pieces with a clean sharp knife.",
+            "Arrange the slices on a chilled plate.",
+            "Serve with soy sauce, wasabi and pickled ginger."
+        ]
+    },
+    {
+        "food": "scallops",
+        "recipe_name": "Pan Seared Garlic Scallops",
+        "servings": 2,
+        "calories": 290,
+        "protein": 30,
+        "carbs": 5,
+        "fat": 17,
+        "ingredients": [
+            "300 g sea scallops",
+            "1 tbsp olive oil",
+            "2 tbsp butter",
+            "2 cloves garlic",
+            "1 tbsp lemon juice",
+            "Parsley",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Pat scallops completely dry.",
+            "Season with salt and pepper.",
+            "Heat olive oil in a skillet.",
+            "Sear scallops until golden on both sides and cooked through.",
+            "Add butter and garlic.",
+            "Baste the scallops briefly.",
+            "Finish with lemon juice and parsley."
+        ]
+    },
+    {
+        "food": "seaweed_salad",
+        "recipe_name": "Japanese Wakame Seaweed Salad",
+        "servings": 2,
+        "calories": 110,
+        "protein": 3,
+        "carbs": 13,
+        "fat": 5,
+        "ingredients": [
+            "30 g dried wakame",
+            "1 cucumber",
+            "1 tbsp rice vinegar",
+            "1 tsp sesame oil",
+            "1 tsp soy sauce",
+            "1 tsp sesame seeds"
+        ],
+        "instructions": [
+            "Soak dried wakame according to package instructions.",
+            "Drain and squeeze out excess water.",
+            "Slice the cucumber thinly.",
+            "Combine wakame and cucumber.",
+            "Mix vinegar, sesame oil and soy sauce.",
+            "Pour dressing over the salad.",
+            "Top with sesame seeds."
+        ]
+    },
+    {
+        "food": "shrimp_and_grits",
+        "recipe_name": "Southern Shrimp and Grits",
+        "servings": 3,
+        "calories": 510,
+        "protein": 31,
+        "carbs": 48,
+        "fat": 23,
+        "ingredients": [
+            "300 g shrimp",
+            "1 cup cornmeal grits",
+            "3 cups water or stock",
+            "1/2 cup cheddar cheese",
+            "2 cloves garlic",
+            "1 tbsp butter",
+            "1 tbsp olive oil",
+            "Paprika",
+            "Salt",
+            "Black pepper"
+        ],
+        "instructions": [
+            "Cook grits until creamy.",
+            "Stir in cheddar cheese.",
+            "Season shrimp with paprika, salt and pepper.",
+            "Heat olive oil in a skillet.",
+            "Cook shrimp thoroughly.",
+            "Add garlic and butter.",
+            "Serve shrimp over creamy grits."
+        ]
+    },
+    {
+        "food": "spring_rolls",
+        "recipe_name": "Crispy Vegetable Spring Rolls",
+        "servings": 4,
+        "calories": 290,
+        "protein": 7,
+        "carbs": 39,
+        "fat": 12,
+        "ingredients": [
+            "8 spring roll wrappers",
+            "1 cup shredded cabbage",
+            "1 carrot",
+            "1/2 bell pepper",
+            "1/2 cup bean sprouts",
+            "1 tbsp soy sauce",
+            "1 tsp sesame oil"
+        ],
+        "instructions": [
+            "Stir-fry cabbage, carrot, bell pepper and bean sprouts.",
+            "Add soy sauce and sesame oil.",
+            "Cool the filling slightly.",
+            "Place filling into wrappers.",
+            "Roll tightly and seal.",
+            "Cook until golden and crispy.",
+            "Serve with dipping sauce."
+        ]
+    },
+    {
+        "food": "strawberry_shortcake",
+        "recipe_name": "Classic Strawberry Shortcake",
+        "servings": 6,
+        "calories": 360,
+        "protein": 6,
+        "carbs": 48,
+        "fat": 16,
+        "ingredients": [
+            "2 cups flour",
+            "1/4 cup sugar",
+            "1 tbsp baking powder",
+            "1/2 cup butter",
+            "3/4 cup milk",
+            "2 cups strawberries",
+            "1 cup whipped cream"
+        ],
+        "instructions": [
+            "Mix flour, sugar and baking powder.",
+            "Cut in butter.",
+            "Add milk and form a soft dough.",
+            "Shape into shortcakes.",
+            "Bake until golden.",
+            "Slice strawberries and mix with a little sugar.",
+            "Split the shortcakes.",
+            "Layer strawberries and whipped cream between them."
+        ]
+    },
+    {
+        "food": "takoyaki",
+        "recipe_name": "Japanese Takoyaki",
+        "servings": 3,
+        "calories": 330,
+        "protein": 16,
+        "carbs": 37,
+        "fat": 13,
+        "ingredients": [
+            "1 cup flour",
+            "2 eggs",
+            "2 cups dashi",
+            "150 g cooked octopus",
+            "2 green onions",
+            "Tenkasu",
+            "Takoyaki sauce",
+            "Japanese mayonnaise",
+            "Bonito flakes"
+        ],
+        "instructions": [
+            "Whisk flour, eggs and dashi into a thin batter.",
+            "Heat a takoyaki pan and lightly oil it.",
+            "Pour batter into the molds.",
+            "Add pieces of cooked octopus, green onion and tenkasu.",
+            "Turn the balls as they cook.",
+            "Cook until golden and fully set.",
+            "Top with takoyaki sauce and mayonnaise.",
+            "Finish with bonito flakes."
+        ]
+    },
+    {
+        "food": "tiramisu",
+        "recipe_name": "Classic Italian Tiramisu",
+        "servings": 6,
+        "calories": 430,
+        "protein": 7,
+        "carbs": 39,
+        "fat": 28,
+        "ingredients": [
+            "250 g mascarpone",
+            "3 eggs",
+            "1/3 cup sugar",
+            "200 g ladyfingers",
+            "1 cup strong coffee",
+            "2 tbsp cocoa powder"
+        ],
+        "instructions": [
+            "Separate the eggs.",
+            "Whisk yolks with sugar until creamy.",
+            "Mix in mascarpone.",
+            "Whip the egg whites until fluffy and fold them in.",
+            "Dip ladyfingers briefly into cooled coffee.",
+            "Layer ladyfingers and mascarpone mixture.",
+            "Refrigerate for several hours.",
+            "Dust with cocoa powder before serving."
+        ]
+    },
+    {
+        "food": "tuna_tartare",
+        "recipe_name": "Fresh Tuna Tartare",
+        "servings": 2,
+        "calories": 260,
+        "protein": 30,
+        "carbs": 7,
+        "fat": 12,
+        "ingredients": [
+            "250 g sushi-grade tuna",
+            "1 tbsp soy sauce",
+            "1 tsp sesame oil",
+            "1 tsp lime juice",
+            "1 green onion",
+            "1/2 avocado",
+            "Sesame seeds"
+        ],
+        "instructions": [
+            "Use properly handled sushi-grade tuna from a reputable source.",
+            "Keep the tuna properly chilled.",
+            "Dice the tuna into small cubes.",
+            "Mix with soy sauce, sesame oil and lime juice.",
+            "Add chopped green onion.",
+            "Serve with diced avocado.",
+            "Garnish with sesame seeds."
+        ]
+    }
+]
