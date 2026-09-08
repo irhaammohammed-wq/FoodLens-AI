@@ -27,29 +27,33 @@ st.set_page_config(
 # SUPABASE CONNECTION
 # ============================================================
 
-@st.cache_resource
 def init_supabase():
 
-    url = st.secrets["connections"]["supabase"]["url"]
-    key = st.secrets["connections"]["supabase"]["key"]
-
-    # --------------------------------------------------------
-    # IMPORTANT:
-    # Google OAuth uses PKCE.
+    # IMPORTANT: Keep one Supabase client PER Streamlit browser session.
     #
-    # The authorization code returned by Supabase must be
-    # exchanged using the same PKCE flow.
-    # --------------------------------------------------------
+    # Do NOT use @st.cache_resource here. That would create one shared
+    # Supabase client for the whole Streamlit process, which can cause one
+    # user's authentication session to appear to another user.
+    #
+    # Streamlit session_state is isolated per browser session, so storing
+    # the client there keeps each user's Supabase/PKCE state separate.
 
-    options = ClientOptions(
-        flow_type="pkce"
-    )
+    if "supabase_client" not in st.session_state:
 
-    return create_client(
-        url,
-        key,
-        options=options
-    )
+        url = st.secrets["connections"]["supabase"]["url"]
+        key = st.secrets["connections"]["supabase"]["key"]
+
+        options = ClientOptions(
+            flow_type="pkce"
+        )
+
+        st.session_state.supabase_client = create_client(
+            url,
+            key,
+            options=options
+        )
+
+    return st.session_state.supabase_client
 
 
 supabase = init_supabase()
