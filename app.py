@@ -7,7 +7,7 @@ from PIL import Image
 import json
 import html
 import re
-from supabase import create_client
+from supabase import create_client, ClientOptions
 from google import genai
 from google.genai import types
 
@@ -33,7 +33,23 @@ def init_supabase():
     url = st.secrets["connections"]["supabase"]["url"]
     key = st.secrets["connections"]["supabase"]["key"]
 
-    return create_client(url, key)
+    # --------------------------------------------------------
+    # IMPORTANT:
+    # Google OAuth uses PKCE.
+    #
+    # The authorization code returned by Supabase must be
+    # exchanged using the same PKCE flow.
+    # --------------------------------------------------------
+
+    options = ClientOptions(
+        flow_type="pkce"
+    )
+
+    return create_client(
+        url,
+        key,
+        options=options
+    )
 
 
 supabase = init_supabase()
@@ -113,8 +129,23 @@ if oauth_code and not st.session_state.authenticated:
             st.session_state.authenticated = True
             st.session_state.user = response.user
 
+            # Remove OAuth parameters from the URL.
             st.query_params.clear()
+
+            # Remove the temporary Google login URL.
+            st.session_state.pop(
+                "google_oauth_url",
+                None
+            )
+
             st.rerun()
+
+        else:
+
+            st.error(
+                "Google authentication failed. "
+                "No user session was returned."
+            )
 
     except Exception as e:
 
@@ -583,7 +614,10 @@ if not st.session_state.authenticated:
 
         try:
 
-            redirect_url = "https://foodlens-project-test.streamlit.app/?login=true"
+            redirect_url = (
+                "https://foodlens-project-test.streamlit.app/"
+                "?login=true"
+            )
 
             response = supabase.auth.sign_in_with_oauth(
                 {
@@ -602,6 +636,12 @@ if not st.session_state.authenticated:
                 )
 
                 st.rerun()
+
+            else:
+
+                st.error(
+                    "Google login URL could not be generated."
+                )
 
 
         except Exception as e:
@@ -3078,7 +3118,7 @@ with st.container(
                     st.rerun()
 
 
-                except Exception as e:
+                except Exception:
 
                     # Remove failed user question
 
@@ -3101,9 +3141,6 @@ with st.container(
                     st.caption(
                         "Please try again in a few seconds."
                     )
-
-                    # Developer/debug information
-                    # is intentionally not shown to the user.
 
 
     # ========================================================
