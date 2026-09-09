@@ -106,7 +106,19 @@ if "ai_chef_messages" not in st.session_state:
 # ============================================================
 
 def create_pkce_pair():
-    verifier = py_secrets.token_urlsafe(64)
+    state_secret = st.secrets["OAUTH_STATE_SECRET"]
+
+    state = py_secrets.token_urlsafe(32)
+
+    verifier_hash = hashlib.sha256(
+        f"{state_secret}:{state}".encode("utf-8")
+    ).hexdigest()
+
+    verifier = base64.urlsafe_b64encode(
+        hashlib.sha256(
+            verifier_hash.encode("utf-8")
+        ).digest()
+    ).rstrip(b"=").decode("ascii")
 
     challenge = base64.urlsafe_b64encode(
         hashlib.sha256(
@@ -114,56 +126,7 @@ def create_pkce_pair():
         ).digest()
     ).rstrip(b"=").decode("ascii")
 
-    state = py_secrets.token_urlsafe(32)
-
     return verifier, challenge, state
-
-
-def exchange_supabase_pkce_code(auth_code, code_verifier):
-    """Exchange a Supabase PKCE authorization code for a session."""
-    if not auth_code or not code_verifier:
-        raise ValueError("The OAuth code or PKCE verifier is missing.")
-
-    url = st.secrets["connections"]["supabase"]["url"].rstrip("/")
-    key = st.secrets["connections"]["supabase"]["key"]
-    token_url = f"{url}/auth/v1/token?grant_type=pkce"
-
-    body = json.dumps({
-        "auth_code": str(auth_code),
-        "code_verifier": str(code_verifier),
-    }).encode("utf-8")
-
-    request = Request(
-        token_url,
-        data=body,
-        headers={
-            "apikey": key,
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-        method="POST",
-    )
-
-    try:
-        with urlopen(request, timeout=20) as response:
-            raw = response.read().decode("utf-8")
-    except urllib.error.HTTPError as error:
-        details = error.read().decode("utf-8", errors="replace")
-        try:
-            error_json = json.loads(details)
-            details = error_json.get("msg") or error_json.get("message") or details
-        except (json.JSONDecodeError, AttributeError):
-            pass
-        raise RuntimeError(
-            f"Supabase token exchange failed (HTTP {error.code}): {details}"
-        ) from error
-    except urllib.error.URLError as error:
-        raise RuntimeError(f"Could not reach Supabase: {error.reason}") from error
-
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError as error:
-        raise RuntimeError("Supabase returned an invalid session response.") from error
 
 
 # ============================================================
@@ -225,36 +188,66 @@ elif (
     and not st.session_state.authenticated
 ):
 
-    saved_state = st.session_state.get(
-        "google_oauth_state"
-    )
+    try:
 
-    verifier = st.session_state.get(
-        "google_oauth_verifier"
-    )
+        # Recreate the exact PKCE verifier from
+        # the returned OAuth state.
+        state_secret = st.secrets["OAUTH_STATE_SECRET"]
+
+        verifier_hash = hashlib.sha256(
+            f"{state_secret}:{oauth_state}".encode("utf-8")
+        ).hexdigest()
+
+        verifier = base64.urlsafe_b64encode(
+            hashlib.sha256(
+                verifier_hash.encode("utf-8")
+            ).digest()
+        ).rstrip(b"=").decode("ascii")
 
 
-    if (
-        not saved_state
-        or not verifier
-        or str(oauth_state) != str(saved_state)
-    ):
-
-        st.error(
-            "Google authentication failed: "
-            "OAuth state parameter is invalid. "
-            "Please start Google login again."
+        token_data = exchange_supabase_pkce_code(
+            oauth_code,
+            verifier
         )
 
-        st.session_state.pop(
-            "google_oauth_state",
+        access_token = token_data.get(
+            "access_token"
+        )
+
+        refresh_token = token_data.get(
+            "refresh_token"
+        )
+
+
+        if not access_token or not refresh_token:
+
+            raise RuntimeError(
+                "Supabase did not return a complete session."
+            )
+
+
+        response = supabase.auth.set_session(
+            access_token,
+            refresh_token
+        )
+
+        authenticated_user = getattr(
+            response,
+            "user",
             None
         )
 
-        st.session_state.pop(
-            "google_oauth_verifier",
-            None
-        )
+
+        if authenticated_user is None:
+
+            raise RuntimeError(
+                "No authenticated user was returned by Supabase."
+            )
+
+
+        st.session_state.authenticated = True
+        st.session_state.auth_provider = "google"
+        st.session_state.user = authenticated_user
 
         st.session_state.pop(
             "google_oauth_url",
@@ -263,102 +256,21 @@ elif (
 
         st.query_params.clear()
 
-
-    else:
-
-        try:
-
-            token_data = exchange_supabase_pkce_code(
-                oauth_code,
-                verifier
-            )
+        st.rerun()
 
 
-            access_token = token_data.get(
-                "access_token"
-            )
+    except Exception as error:
 
-            refresh_token = token_data.get(
-                "refresh_token"
-            )
+        st.session_state.pop(
+            "google_oauth_url",
+            None
+        )
 
+        st.query_params.clear()
 
-            if not access_token or not refresh_token:
-
-                raise RuntimeError(
-                    "Supabase did not return a complete session."
-                )
-
-
-            response = supabase.auth.set_session(
-                access_token,
-                refresh_token
-            )
-
-
-            authenticated_user = getattr(
-                response,
-                "user",
-                None
-            )
-
-
-            if authenticated_user is None:
-
-                raise RuntimeError(
-                    "No authenticated user was returned by Supabase."
-                )
-
-
-            st.session_state.authenticated = True
-
-            st.session_state.auth_provider = "google"
-
-            st.session_state.user = authenticated_user
-
-
-            st.session_state.pop(
-                "google_oauth_state",
-                None
-            )
-
-            st.session_state.pop(
-                "google_oauth_verifier",
-                None
-            )
-
-            st.session_state.pop(
-                "google_oauth_url",
-                None
-            )
-
-            st.query_params.clear()
-
-            st.rerun()
-
-
-        except Exception as error:
-
-            st.session_state.pop(
-                "google_oauth_state",
-                None
-            )
-
-            st.session_state.pop(
-                "google_oauth_verifier",
-                None
-            )
-
-            st.session_state.pop(
-                "google_oauth_url",
-                None
-            )
-
-            st.query_params.clear()
-
-            st.error(
-                f"Google authentication failed: {error}"
-            )
+        st.error(
+            f"Google authentication failed: {error}"
+        )
 
 
 # ============================================================
@@ -815,69 +727,53 @@ if not st.session_state.authenticated:
 
     if st.button(
         "🌐  Continue with Google",
-        width="stretch",
-        type="secondary",
-        key="google_button"
+            width="stretch",
+            type="secondary",
+            key="google_button"
     ):
 
-        try:
+            try:
 
-            verifier, challenge, state = (
-                create_pkce_pair()
-            )
+                verifier, challenge, state = create_pkce_pair()
 
+                redirect_url = st.secrets.get(
+                    "OAUTH_REDIRECT_URL",
+                    "https://foodlens-project-test.streamlit.app/"
+                ).rstrip("/")
 
-            st.session_state[
-                "google_oauth_state"
-            ] = state
+                supabase_url = (
+                    st.secrets[
+                        "connections"
+                    ][
+                        "supabase"
+                    ][
+                        "url"
+                    ]
+                    .rstrip("/")
+                )
 
-            st.session_state[
-                "google_oauth_verifier"
-            ] = verifier
+                authorize_url = (
+                    f"{supabase_url}/auth/v1/authorize?"
+                    + urlencode({
+                        "provider": "google",
+                        "redirect_to": redirect_url,
+                        "code_challenge": challenge,
+                        "code_challenge_method": "S256",
+                        "state": state
+                    })
+                )
 
+                st.session_state[
+                    "google_oauth_url"
+                ] = authorize_url
 
-            redirect_url = st.secrets.get(
-                "OAUTH_REDIRECT_URL",
-                "https://foodlens-project-test.streamlit.app/"
-            ).rstrip("/")
+                st.rerun()
 
+            except Exception as e:
 
-            supabase_url = (
-                st.secrets[
-                    "connections"
-                ][
-                    "supabase"
-                ][
-                    "url"
-                ]
-                .rstrip("/")
-            )
-
-
-            authorize_url = (
-                f"{supabase_url}/auth/v1/authorize?"
-                + urlencode({
-                    "provider": "google",
-                    "redirect_to": redirect_url,
-                    "code_challenge": challenge,
-                    "code_challenge_method": "S256",
-                    "state": state
-                })
-            )
-
-
-            st.session_state[
-                "google_oauth_url"
-            ] = authorize_url
-
-            st.rerun()
-
-
-        except Exception as e:
-
-            st.error(
-                f"Google login could not be started: {e}"
-            )
+                st.error(
+                    f"Google login could not be started: {e}"
+                )
 
 
     # --------------------------------------------------------
