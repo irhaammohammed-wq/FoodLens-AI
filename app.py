@@ -7,6 +7,13 @@ from PIL import Image
 import json
 import html
 import re
+import base64
+import hashlib
+import secrets as py_secrets
+import time
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+import urllib.error
 from supabase import create_client, ClientOptions
 from google import genai
 from google.genai import types
@@ -84,6 +91,9 @@ if "authenticated" not in st.session_state:
 if "user" not in st.session_state:
     st.session_state.user = None
 
+if "auth_provider" not in st.session_state:
+    st.session_state.auth_provider = None
+
 if "auth_mode" not in st.session_state:
     st.session_state.auth_mode = "login"
 
@@ -92,20 +102,83 @@ if "ai_chef_messages" not in st.session_state:
 
 
 # ============================================================
-# CHECK SUPABASE SESSION
+# PKCE STATE
+# ============================================================
+
+def create_pkce_pair():
+    verifier = py_secrets.token_urlsafe(64)
+
+    challenge = base64.urlsafe_b64encode(
+        hashlib.sha256(
+            verifier.encode("utf-8")
+        ).digest()
+    ).rstrip(b"=").decode("ascii")
+
+    state = py_secrets.token_urlsafe(32)
+
+    return verifier, challenge, state
+
+
+def exchange_supabase_pkce_code(auth_code, code_verifier):
+    """Exchange a Supabase PKCE authorization code for a session."""
+    if not auth_code or not code_verifier:
+        raise ValueError("The OAuth code or PKCE verifier is missing.")
+
+    url = st.secrets["connections"]["supabase"]["url"].rstrip("/")
+    key = st.secrets["connections"]["supabase"]["key"]
+    token_url = f"{url}/auth/v1/token?grant_type=pkce"
+
+    body = json.dumps({
+        "auth_code": str(auth_code),
+        "code_verifier": str(code_verifier),
+    }).encode("utf-8")
+
+    request = Request(
+        token_url,
+        data=body,
+        headers={
+            "apikey": key,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        method="POST",
+    )
+
+    try:
+        with urlopen(request, timeout=20) as response:
+            raw = response.read().decode("utf-8")
+    except urllib.error.HTTPError as error:
+        details = error.read().decode("utf-8", errors="replace")
+        try:
+            error_json = json.loads(details)
+            details = error_json.get("msg") or error_json.get("message") or details
+        except (json.JSONDecodeError, AttributeError):
+            pass
+        raise RuntimeError(
+            f"Supabase token exchange failed (HTTP {error.code}): {details}"
+        ) from error
+    except urllib.error.URLError as error:
+        raise RuntimeError(f"Could not reach Supabase: {error.reason}") from error
+
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as error:
+        raise RuntimeError("Supabase returned an invalid session response.") from error
+
+
+# ============================================================
+# RESTORE SUPABASE SESSION
 # ============================================================
 
 try:
-
     current_session = supabase.auth.get_session()
 
     if current_session is not None:
-
         st.session_state.authenticated = True
+        st.session_state.auth_provider = "supabase"
 
         if hasattr(current_session, "user"):
             st.session_state.user = current_session.user
-
 except Exception:
     pass
 
@@ -115,47 +188,177 @@ except Exception:
 # ============================================================
 
 query_params = st.query_params
-oauth_code = query_params.get("code")
 
 
-if oauth_code and not st.session_state.authenticated:
+def first_query_value(name):
+    value = query_params.get(name)
 
-    try:
+    if isinstance(value, (list, tuple)):
+        return value[0] if value else None
 
-        response = supabase.auth.exchange_code_for_session(
-            {
-                "auth_code": oauth_code
-            }
+    return value
+
+
+oauth_code = first_query_value("code")
+oauth_state = first_query_value("state")
+oauth_error = first_query_value("error")
+oauth_error_description = first_query_value("error_description")
+
+
+if oauth_error and not st.session_state.authenticated:
+
+    message = (
+        oauth_error_description
+        or oauth_error
+    )
+
+    st.error(
+        f"Google authentication failed: {message}"
+    )
+
+    st.query_params.clear()
+
+
+elif (
+    oauth_code
+    and oauth_state
+    and not st.session_state.authenticated
+):
+
+    saved_state = st.session_state.get(
+        "google_oauth_state"
+    )
+
+    verifier = st.session_state.get(
+        "google_oauth_verifier"
+    )
+
+
+    if (
+        not saved_state
+        or not verifier
+        or str(oauth_state) != str(saved_state)
+    ):
+
+        st.error(
+            "Google authentication failed: "
+            "OAuth state parameter is invalid. "
+            "Please start Google login again."
         )
 
-        if response and response.user:
+        st.session_state.pop(
+            "google_oauth_state",
+            None
+        )
+
+        st.session_state.pop(
+            "google_oauth_verifier",
+            None
+        )
+
+        st.session_state.pop(
+            "google_oauth_url",
+            None
+        )
+
+        st.query_params.clear()
+
+
+    else:
+
+        try:
+
+            token_data = exchange_supabase_pkce_code(
+                oauth_code,
+                verifier
+            )
+
+
+            access_token = token_data.get(
+                "access_token"
+            )
+
+            refresh_token = token_data.get(
+                "refresh_token"
+            )
+
+
+            if not access_token or not refresh_token:
+
+                raise RuntimeError(
+                    "Supabase did not return a complete session."
+                )
+
+
+            response = supabase.auth.set_session(
+                access_token,
+                refresh_token
+            )
+
+
+            authenticated_user = getattr(
+                response,
+                "user",
+                None
+            )
+
+
+            if authenticated_user is None:
+
+                raise RuntimeError(
+                    "No authenticated user was returned by Supabase."
+                )
+
 
             st.session_state.authenticated = True
-            st.session_state.user = response.user
 
-            # Remove OAuth parameters from the URL.
-            st.query_params.clear()
+            st.session_state.auth_provider = "google"
 
-            # Remove the temporary Google login URL.
+            st.session_state.user = authenticated_user
+
+
+            st.session_state.pop(
+                "google_oauth_state",
+                None
+            )
+
+            st.session_state.pop(
+                "google_oauth_verifier",
+                None
+            )
+
             st.session_state.pop(
                 "google_oauth_url",
                 None
             )
 
+            st.query_params.clear()
+
             st.rerun()
 
-        else:
 
-            st.error(
-                "Google authentication failed. "
-                "No user session was returned."
+        except Exception as error:
+
+            st.session_state.pop(
+                "google_oauth_state",
+                None
             )
 
-    except Exception as e:
+            st.session_state.pop(
+                "google_oauth_verifier",
+                None
+            )
 
-        st.error(
-            f"Google authentication failed: {e}"
-        )
+            st.session_state.pop(
+                "google_oauth_url",
+                None
+            )
+
+            st.query_params.clear()
+
+            st.error(
+                f"Google authentication failed: {error}"
+            )
 
 
 # ============================================================
@@ -605,47 +808,69 @@ if not st.session_state.authenticated:
     # ========================================================
     # GOOGLE AUTH
     # ========================================================
+    #
+    # Start Supabase's Google authorization request manually so the PKCE
+    # verifier is stored server-side before the browser leaves Streamlit.
+    # The verifier is never put in the redirect URL.
 
-    google_clicked = st.button(
+    if st.button(
         "🌐  Continue with Google",
         width="stretch",
         type="secondary",
         key="google_button"
-    )
-
-
-    if google_clicked:
+    ):
 
         try:
 
-            redirect_url = (
+            verifier, challenge, state = (
+                create_pkce_pair()
+            )
+
+
+            st.session_state[
+                "google_oauth_state"
+            ] = state
+
+            st.session_state[
+                "google_oauth_verifier"
+            ] = verifier
+
+
+            redirect_url = st.secrets.get(
+                "OAUTH_REDIRECT_URL",
                 "https://foodlens-project-test.streamlit.app/"
-                "?login=true"
+            ).rstrip("/")
+
+
+            supabase_url = (
+                st.secrets[
+                    "connections"
+                ][
+                    "supabase"
+                ][
+                    "url"
+                ]
+                .rstrip("/")
             )
 
-            response = supabase.auth.sign_in_with_oauth(
-                {
+
+            authorize_url = (
+                f"{supabase_url}/auth/v1/authorize?"
+                + urlencode({
                     "provider": "google",
-                    "options": {
-                        "redirect_to": redirect_url
-                    }
-                }
+                    "redirect_to": redirect_url,
+                    "code_challenge": challenge,
+                    "code_challenge_method": "S256",
+                    "state": state
+                })
             )
 
 
-            if response and response.url:
+            st.session_state[
+                "google_oauth_url"
+            ] = authorize_url
 
-                st.session_state["google_oauth_url"] = (
-                    response.url
-                )
-
-                st.rerun()
-
-            else:
-
-                st.error(
-                    "Google login URL could not be generated."
-                )
+            st.rerun()
 
 
         except Exception as e:
@@ -660,7 +885,6 @@ if not st.session_state.authenticated:
     # --------------------------------------------------------
 
     if "google_oauth_url" in st.session_state:
-
         st.info(
             "Google login is ready. Click the button below to continue."
         )
@@ -766,12 +990,16 @@ if not user_name:
         width="stretch"
     ):
 
-        try:
-            supabase.auth.sign_out()
-        except Exception:
-            pass
+        if st.session_state.get("auth_provider") == "google":
+            st.logout()
+        else:
+            try:
+                supabase.auth.sign_out()
+            except Exception:
+                pass
 
         st.session_state.authenticated = False
+        st.session_state.auth_provider = None
         st.session_state.user = None
 
         st.rerun()
