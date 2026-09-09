@@ -7,9 +7,15 @@ from PIL import Image
 import json
 import html
 import re
-
+import base64
+import hashlib
+import secrets as py_secrets
+import time
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 from supabase import create_client, ClientOptions
 from google import genai
+from google.genai import types
 
 
 # ============================================================
@@ -29,10 +35,14 @@ st.set_page_config(
 
 def init_supabase():
 
-    # Keep one Supabase client per Streamlit browser session.
+    # IMPORTANT: Keep one Supabase client PER Streamlit browser session.
     #
-    # PKCE is enabled so Supabase handles the OAuth verifier/state
-    # generation through its own authentication client.
+    # Do NOT use @st.cache_resource here. That would create one shared
+    # Supabase client for the whole Streamlit process, which can cause one
+    # user's authentication session to appear to another user.
+    #
+    # Streamlit session_state is isolated per browser session, so storing
+    # the client there keeps each user's Supabase/PKCE state separate.
 
     if "supabase_client" not in st.session_state:
 
@@ -91,26 +101,98 @@ if "ai_chef_messages" not in st.session_state:
 
 
 # ============================================================
+# OAUTH PKCE HELPERS
+# ============================================================
+#
+# Streamlit can create a new server execution after Google redirects back
+# to the app. Therefore the PKCE verifier must NOT depend on Streamlit
+# session_state or a process-local cache.
+#
+# We derive the verifier deterministically from a random state plus the
+# server-side OAUTH_STATE_SECRET. The verifier itself never appears in the
+# browser URL. The same state returned by the OAuth callback lets us rebuild
+# the exact verifier needed for the token exchange.
+# ============================================================
+
+def create_pkce_pair():
+    state_secret = st.secrets["OAUTH_STATE_SECRET"]
+    state = py_secrets.token_urlsafe(32)
+
+    verifier_seed = hashlib.sha256(
+        f"{state_secret}:{state}".encode("utf-8")
+    ).digest()
+
+    verifier = base64.urlsafe_b64encode(verifier_seed).rstrip(b"=").decode("ascii")
+
+    challenge = base64.urlsafe_b64encode(
+        hashlib.sha256(verifier.encode("utf-8")).digest()
+    ).rstrip(b"=").decode("ascii")
+
+    return verifier, challenge, state
+
+
+def exchange_supabase_pkce_code(auth_code, code_verifier):
+    url = st.secrets["connections"]["supabase"]["url"].rstrip("/")
+    key = st.secrets["connections"]["supabase"]["key"]
+
+    token_url = f"{url}/auth/v1/token?grant_type=pkce"
+
+    body = urlencode({
+        "auth_code": auth_code,
+        "code_verifier": code_verifier
+    }).encode("utf-8")
+
+    request = Request(
+        token_url,
+        data=body,
+        headers={
+            "apikey": key,
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method="POST"
+    )
+
+    try:
+        with urlopen(request, timeout=20) as response:
+            raw = response.read().decode("utf-8")
+    except Exception as error:
+        if hasattr(error, "read"):
+            try:
+                details = error.read().decode("utf-8")
+                raise RuntimeError(details) from error
+            except Exception:
+                pass
+        raise
+
+    return json.loads(raw)
+
+
+def rebuild_pkce_verifier(state):
+    state_secret = st.secrets["OAUTH_STATE_SECRET"]
+
+    verifier_seed = hashlib.sha256(
+        f"{state_secret}:{state}".encode("utf-8")
+    ).digest()
+
+    return base64.urlsafe_b64encode(
+        verifier_seed
+    ).rstrip(b"=").decode("ascii")
+
+
+# ============================================================
 # RESTORE SUPABASE SESSION
 # ============================================================
 
 try:
-
     current_session = supabase.auth.get_session()
 
     if current_session is not None:
-
         st.session_state.authenticated = True
         st.session_state.auth_provider = "supabase"
 
         if hasattr(current_session, "user"):
-
-            st.session_state.user = (
-                current_session.user
-            )
-
+            st.session_state.user = current_session.user
 except Exception:
-
     pass
 
 
@@ -120,33 +202,25 @@ except Exception:
 
 query_params = st.query_params
 
+oauth_code = query_params.get("code")
+oauth_state = query_params.get("state")
+oauth_error = query_params.get("error")
+oauth_error_description = query_params.get("error_description")
 
-def first_query_value(name):
 
-    value = query_params.get(name)
-
+def first_query_value(value):
     if isinstance(value, (list, tuple)):
-
         return value[0] if value else None
-
     return value
 
 
-oauth_code = first_query_value("code")
-
-oauth_error = first_query_value("error")
-
-oauth_error_description = first_query_value(
-    "error_description"
-)
-
+oauth_code = first_query_value(oauth_code)
+oauth_state = first_query_value(oauth_state)
+oauth_error = first_query_value(oauth_error)
+oauth_error_description = first_query_value(oauth_error_description)
 
 if oauth_error and not st.session_state.authenticated:
-
-    message = (
-        oauth_error_description
-        or oauth_error
-    )
+    message = oauth_error_description or oauth_error
 
     st.error(
         f"Google authentication failed: {message}"
@@ -155,93 +229,74 @@ if oauth_error and not st.session_state.authenticated:
     st.query_params.clear()
 
 
-elif (
-    oauth_code
-    and not st.session_state.authenticated
-):
+elif oauth_code and not st.session_state.authenticated:
 
-    try:
+    if not oauth_state:
+        st.error(
+            "Google authentication failed: the OAuth state was not returned. "
+            "Please start Google login again."
+        )
+        st.query_params.clear()
 
-        # Supabase Python PKCE flow.
-        #
-        # The OAuth request was created by
-        # supabase.auth.sign_in_with_oauth().
-        #
-        # Supabase therefore has the corresponding
-        # PKCE verifier available in its auth client.
-        #
-        # We only need to exchange the returned code.
+    else:
+        try:
+            verifier = rebuild_pkce_verifier(oauth_state)
 
-        response = (
-            supabase.auth.exchange_code_for_session(
-                {
-                    "auth_code": oauth_code
-                }
+            token_data = exchange_supabase_pkce_code(
+                oauth_code,
+                verifier
             )
-        )
 
+            access_token = token_data.get("access_token")
+            refresh_token = token_data.get("refresh_token")
 
-        authenticated_user = getattr(
-            response,
-            "user",
-            None
-        )
+            if not access_token or not refresh_token:
+                raise RuntimeError(
+                    "Supabase did not return a complete session."
+                )
 
+            response = supabase.auth.set_session(
+                access_token,
+                refresh_token
+            )
 
-        if authenticated_user is None:
-
-            session = getattr(
+            authenticated_user = getattr(
                 response,
-                "session",
+                "user",
                 None
             )
 
-            if session is not None:
+            if authenticated_user is None:
+                current_session = supabase.auth.get_session()
 
-                authenticated_user = getattr(
-                    session,
-                    "user",
-                    None
+                if current_session is not None:
+                    authenticated_user = getattr(
+                        current_session,
+                        "user",
+                        None
+                    )
+
+            if authenticated_user is None:
+                raise RuntimeError(
+                    "Supabase did not return an authenticated user."
                 )
 
+            st.session_state.authenticated = True
+            st.session_state.auth_provider = "google"
+            st.session_state.user = authenticated_user
 
-        if authenticated_user is None:
-
-            raise RuntimeError(
-                "Supabase did not return an authenticated user."
+            st.query_params.clear()
+            st.session_state.pop(
+                "google_oauth_url",
+                None
             )
 
+            st.rerun()
 
-        st.session_state.authenticated = True
-
-        st.session_state.auth_provider = "google"
-
-        st.session_state.user = authenticated_user
-
-
-        st.session_state.pop(
-            "google_oauth_url",
-            None
-        )
-
-
-        st.query_params.clear()
-
-        st.rerun()
-
-
-    except Exception as error:
-
-        st.session_state.pop(
-            "google_oauth_url",
-            None
-        )
-
-        st.query_params.clear()
-
-        st.error(
-            f"Google authentication failed: {error}"
-        )
+        except Exception as error:
+            st.error(
+                f"Google authentication failed: {error}"
+            )
 
 
 # ============================================================
@@ -494,23 +549,18 @@ if not st.session_state.authenticated:
 
                 try:
 
-                    response = (
-                        supabase.auth.sign_in_with_password(
-                            {
-                                "email": login_email.strip(),
-                                "password": login_password
-                            }
-                        )
+                    response = supabase.auth.sign_in_with_password(
+                        {
+                            "email": login_email.strip(),
+                            "password": login_password
+                        }
                     )
 
 
                     if response.user:
 
                         st.session_state.authenticated = True
-
-                        st.session_state.user = (
-                            response.user
-                        )
+                        st.session_state.user = response.user
 
                         st.success(
                             "Login successful! 🎉"
@@ -640,10 +690,7 @@ if not st.session_state.authenticated:
                         else:
 
                             st.session_state.authenticated = True
-
-                            st.session_state.user = (
-                                response.user
-                            )
+                            st.session_state.user = response.user
 
                             st.success(
                                 "Account created successfully! 🎉"
@@ -699,6 +746,11 @@ if not st.session_state.authenticated:
     # ========================================================
     # GOOGLE AUTH
     # ========================================================
+    #
+    # Manual PKCE is used here because Streamlit's server execution does not
+    # reliably preserve the Python SDK's verifier across the external Google
+    # redirect. The verifier is deterministically rebuilt in the callback
+    # from the returned state and the server-side OAUTH_STATE_SECRET.
 
     if st.button(
         "🌐  Continue with Google",
@@ -706,72 +758,36 @@ if not st.session_state.authenticated:
         type="secondary",
         key="google_button"
     ):
-
         try:
+            verifier, challenge, state = create_pkce_pair()
 
-            # IMPORTANT:
-            #
-            # Let Supabase generate and manage the OAuth state
-            # and PKCE verifier.
-            #
-            # Do NOT manually add a state parameter here.
+            redirect_url = (
+                st.secrets.get(
+                    "OAUTH_REDIRECT_URL",
+                    "https://foodlens-project-test.streamlit.app/"
+                ).rstrip("/")
+            )
 
-            response = supabase.auth.sign_in_with_oauth(
-                {
+            supabase_url = (
+                st.secrets["connections"]["supabase"]["url"]
+                .rstrip("/")
+            )
+
+            authorize_url = (
+                f"{supabase_url}/auth/v1/authorize?"
+                + urlencode({
                     "provider": "google",
-                    "options": {
-                        "redirect_to": (
-                            st.secrets.get(
-                                "OAUTH_REDIRECT_URL",
-                                "https://foodlens-project-test.streamlit.app/"
-                            ).rstrip("/")
-                        )
-                    }
-                }
+                    "redirect_to": redirect_url,
+                    "code_challenge": challenge,
+                    "code_challenge_method": "S256",
+                    "state": state
+                })
             )
 
-
-            oauth_url = getattr(
-                response,
-                "url",
-                None
-            )
-
-
-            if not oauth_url:
-
-                data = getattr(
-                    response,
-                    "data",
-                    None
-                )
-
-                if data is not None:
-
-                    oauth_url = getattr(
-                        data,
-                        "url",
-                        None
-                    )
-
-
-            if not oauth_url:
-
-                raise RuntimeError(
-                    "Supabase did not return a Google "
-                    "authorization URL."
-                )
-
-
-            st.session_state[
-                "google_oauth_url"
-            ] = oauth_url
-
+            st.session_state["google_oauth_url"] = authorize_url
             st.rerun()
 
-
         except Exception as error:
-
             st.error(
                 f"Google login could not be started: {error}"
             )
@@ -782,7 +798,6 @@ if not st.session_state.authenticated:
     # --------------------------------------------------------
 
     if "google_oauth_url" in st.session_state:
-
         st.info(
             "Google login is ready. Click the button below to continue."
         )
@@ -888,19 +903,16 @@ if not user_name:
         width="stretch"
     ):
 
-        try:
-
-            supabase.auth.sign_out()
-
-        except Exception:
-
-            pass
-
+        if st.session_state.get("auth_provider") == "google":
+            st.logout()
+        else:
+            try:
+                supabase.auth.sign_out()
+            except Exception:
+                pass
 
         st.session_state.authenticated = False
-
         st.session_state.auth_provider = None
-
         st.session_state.user = None
 
         st.rerun()
@@ -1726,9 +1738,7 @@ def load_food_model():
 
     classes = checkpoint["classes"]
 
-    model = models.resnet50(
-        weights=None
-    )
+    model = models.resnet50(weights=None)
 
     model.fc = nn.Linear(
         model.fc.in_features,
@@ -1740,7 +1750,6 @@ def load_food_model():
     )
 
     model = model.to(device)
-
     model.eval()
 
     return model, classes, device
@@ -1770,23 +1779,13 @@ def load_recipes():
 
 transform = transforms.Compose([
 
-    transforms.Resize(
-        (224, 224)
-    ),
+    transforms.Resize((224, 224)),
 
     transforms.ToTensor(),
 
     transforms.Normalize(
-        mean=[
-            0.485,
-            0.456,
-            0.406
-        ],
-        std=[
-            0.229,
-            0.224,
-            0.225
-        ]
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
     )
 
 ])
@@ -1816,27 +1815,15 @@ def predict_food(
     device
 ):
 
-    image = image.convert(
-        "RGB"
-    )
+    image = image.convert("RGB")
 
-    image_tensor = transform(
-        image
-    )
-
-    image_tensor = image_tensor.unsqueeze(
-        0
-    )
-
-    image_tensor = image_tensor.to(
-        device
-    )
+    image_tensor = transform(image)
+    image_tensor = image_tensor.unsqueeze(0)
+    image_tensor = image_tensor.to(device)
 
     with torch.no_grad():
 
-        outputs = model(
-            image_tensor
-        )
+        outputs = model(image_tensor)
 
         probabilities = torch.softmax(
             outputs,
@@ -1848,9 +1835,7 @@ def predict_food(
             dim=1
         )
 
-    predicted_food = classes[
-        predicted.item()
-    ]
+    predicted_food = classes[predicted.item()]
 
     confidence_percentage = (
         confidence.item() * 100
@@ -1889,9 +1874,7 @@ def get_matching_recipes(
 
         if recipe_food == predicted_food:
 
-            matching_recipes.append(
-                recipe
-            )
+            matching_recipes.append(recipe)
 
     return matching_recipes
 
@@ -2060,9 +2043,7 @@ def display_recipe(recipe):
     """
 
 
-    st.html(
-        recipe_html
-    )
+    st.html(recipe_html)
 
 
 # ============================================================
@@ -2076,9 +2057,7 @@ def ask_ai_chef(
 ):
 
     food_context = (
-        format_food_name(
-            predicted_food
-        )
+        format_food_name(predicted_food)
         if predicted_food
         else "No food has been identified yet."
     )
@@ -2115,9 +2094,7 @@ Instructions:
     conversation_history = ""
 
 
-    for message in (
-        st.session_state.ai_chef_messages[-10:]
-    ):
+    for message in st.session_state.ai_chef_messages[-10:]:
 
         role = (
             "User"
@@ -2187,13 +2164,9 @@ Answer the latest user question as AI Chef.
 
             try:
 
-                response = (
-                    gemini_client
-                    .models
-                    .generate_content(
-                        model=model_name,
-                        contents=prompt
-                    )
+                response = gemini_client.models.generate_content(
+                    model=model_name,
+                    contents=prompt
                 )
 
 
@@ -2226,9 +2199,9 @@ Answer the latest user question as AI Chef.
 
 
     raise Exception(
-        "Gemini is temporarily unavailable because "
-        "the AI model is experiencing high demand. "
-        "Please try again in a few seconds.\n\n"
+        "Gemini is temporarily unavailable because the AI model "
+        "is experiencing high demand. Please try again in a few "
+        "seconds.\n\n"
         f"Last error: {last_error}"
     )
 
@@ -2239,12 +2212,16 @@ Answer the latest user question as AI Chef.
 
 def format_ai_response(text):
 
+    """
+    Converts basic Gemini Markdown formatting into safe HTML
+    so AI Chef responses can be displayed inside the custom
+    message card without losing formatting.
+    """
+
     text = str(text)
 
-    text = html.escape(
-        text
-    )
-
+    # Escape HTML first for safety
+    text = html.escape(text)
 
     # --------------------------------------------------------
     # Bold
@@ -2256,7 +2233,6 @@ def format_ai_response(text):
         text
     )
 
-
     # --------------------------------------------------------
     # Italic
     # --------------------------------------------------------
@@ -2266,7 +2242,6 @@ def format_ai_response(text):
         r"<em>\1</em>",
         text
     )
-
 
     # --------------------------------------------------------
     # Inline code
@@ -2278,14 +2253,11 @@ def format_ai_response(text):
         text
     )
 
-
     # --------------------------------------------------------
     # Process lines
     # --------------------------------------------------------
 
-    lines = text.split(
-        "\n"
-    )
+    lines = text.split("\n")
 
     output = []
 
@@ -2298,25 +2270,18 @@ def format_ai_response(text):
         stripped = line.strip()
 
 
+        # Empty line
         if not stripped:
 
             if in_ul:
 
-                output.append(
-                    "</ul>"
-                )
-
+                output.append("</ul>")
                 in_ul = False
-
 
             if in_ol:
 
-                output.append(
-                    "</ol>"
-                )
-
+                output.append("</ol>")
                 in_ol = False
-
 
             continue
 
@@ -2335,21 +2300,13 @@ def format_ai_response(text):
 
             if in_ol:
 
-                output.append(
-                    "</ol>"
-                )
-
+                output.append("</ol>")
                 in_ol = False
-
 
             if not in_ul:
 
-                output.append(
-                    "<ul>"
-                )
-
+                output.append("<ul>")
                 in_ul = True
-
 
             output.append(
                 f"<li>{bullet_match.group(1)}</li>"
@@ -2372,21 +2329,13 @@ def format_ai_response(text):
 
             if in_ul:
 
-                output.append(
-                    "</ul>"
-                )
-
+                output.append("</ul>")
                 in_ul = False
-
 
             if not in_ol:
 
-                output.append(
-                    "<ol>"
-                )
-
+                output.append("<ol>")
                 in_ol = True
-
 
             output.append(
                 f"<li>{number_match.group(1)}</li>"
@@ -2401,19 +2350,12 @@ def format_ai_response(text):
 
         if in_ul:
 
-            output.append(
-                "</ul>"
-            )
-
+            output.append("</ul>")
             in_ul = False
-
 
         if in_ol:
 
-            output.append(
-                "</ol>"
-            )
-
+            output.append("</ol>")
             in_ol = False
 
 
@@ -2423,22 +2365,13 @@ def format_ai_response(text):
 
 
     if in_ul:
-
-        output.append(
-            "</ul>"
-        )
-
+        output.append("</ul>")
 
     if in_ol:
-
-        output.append(
-            "</ol>"
-        )
+        output.append("</ol>")
 
 
-    return "".join(
-        output
-    )
+    return "".join(output)
 
 
 # ============================================================
@@ -2532,11 +2465,7 @@ st.html("""
 
 uploaded_file = st.file_uploader(
     "Upload food image",
-    type=[
-        "jpg",
-        "jpeg",
-        "png"
-    ],
+    type=["jpg", "jpeg", "png"],
     label_visibility="collapsed"
 )
 
@@ -2547,13 +2476,9 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
 
-    st.markdown(
-        "### ✨ Your food"
-    )
+    st.markdown("### ✨ Your food")
 
-    col1, col2 = st.columns(
-        [1.1, 1]
-    )
+    col1, col2 = st.columns([1.1, 1])
 
 
     with col1:
@@ -2649,19 +2574,17 @@ if uploaded_file is not None:
                     )
 
 
-                    st.session_state[
-                        "predicted_food"
-                    ] = predicted_food
+                    st.session_state["predicted_food"] = (
+                        predicted_food
+                    )
 
+                    st.session_state["confidence"] = (
+                        confidence
+                    )
 
-                    st.session_state[
-                        "confidence"
-                    ] = confidence
-
-
-                    st.session_state[
-                        "matching_recipes"
-                    ] = matching_recipes
+                    st.session_state["matching_recipes"] = (
+                        matching_recipes
+                    )
 
 
                 except Exception as e:
@@ -2708,9 +2631,7 @@ if "predicted_food" in st.session_state:
             "Food identified with high confidence! 🎉"
         )
 
-        result_label = (
-            "🧠 FoodLens AI identified"
-        )
+        result_label = "🧠 FoodLens AI identified"
 
 
     elif confidence >= MEDIUM_CONFIDENCE:
@@ -2732,16 +2653,12 @@ if "predicted_food" in st.session_state:
         </div>
         """)
 
-        result_label = (
-            "🧠 FoodLens AI's possible match"
-        )
+        result_label = "🧠 FoodLens AI's possible match"
 
 
     else:
 
-        result_label = (
-            "🧠 FoodLens AI's best guess"
-        )
+        result_label = "🧠 FoodLens AI's best guess"
 
 
     st.html(
@@ -2836,9 +2753,7 @@ if "predicted_food" in st.session_state:
 
             for recipe in matching_recipes:
 
-                display_recipe(
-                    recipe
-                )
+                display_recipe(recipe)
 
         else:
 
@@ -2881,9 +2796,7 @@ if "predicted_food" in st.session_state:
 
             for recipe in matching_recipes:
 
-                display_recipe(
-                    recipe
-                )
+                display_recipe(recipe)
 
         else:
 
@@ -2948,9 +2861,7 @@ if "predicted_food" in st.session_state:
                     """)
 
 
-                    display_recipe(
-                        recipe
-                    )
+                    display_recipe(recipe)
 
         else:
 
@@ -3134,9 +3045,7 @@ with st.container(
 
                 Your detected food:
                 <strong>
-                    {html.escape(
-                        format_food_name(ai_food)
-                    )}
+                    {html.escape(format_food_name(ai_food))}
                 </strong>
 
             </div>
@@ -3168,9 +3077,7 @@ with st.container(
         """)
 
 
-        for message in (
-            st.session_state.ai_chef_messages
-        ):
+        for message in st.session_state.ai_chef_messages:
 
             message_content = str(
                 message["content"]
@@ -3179,14 +3086,11 @@ with st.container(
 
             if message["role"] == "user":
 
-                safe_content = (
-                    html.escape(
-                        message_content
-                    )
-                    .replace(
-                        "\n",
-                        "<br>"
-                    )
+                safe_content = html.escape(
+                    message_content
+                ).replace(
+                    "\n",
+                    "<br>"
                 )
 
 
@@ -3207,10 +3111,8 @@ with st.container(
 
             else:
 
-                formatted_answer = (
-                    format_ai_response(
-                        message_content
-                    )
+                formatted_answer = format_ai_response(
+                    message_content
                 )
 
 
@@ -3248,6 +3150,17 @@ with st.container(
     </div>
     """)
 
+
+    # --------------------------------------------------------
+    # IMPORTANT:
+    # clear_on_submit=True safely clears the widget after
+    # submission.
+    #
+    # We NEVER modify:
+    # st.session_state.ai_chef_input
+    #
+    # This permanently fixes the widget-state error.
+    # --------------------------------------------------------
 
     with st.form(
         "ai_chef_form",
@@ -3288,9 +3201,7 @@ with st.container(
 
     if send_question:
 
-        clean_question = (
-            chef_question.strip()
-        )
+        clean_question = chef_question.strip()
 
 
         if not clean_question:
@@ -3302,6 +3213,10 @@ with st.container(
 
         else:
 
+            # ------------------------------------------------
+            # Add user message
+            # ------------------------------------------------
+
             st.session_state.ai_chef_messages.append(
                 {
                     "role": "user",
@@ -3309,6 +3224,10 @@ with st.container(
                 }
             )
 
+
+            # ------------------------------------------------
+            # Generate response
+            # ------------------------------------------------
 
             with st.spinner(
                 "👨‍🍳 AI Chef is thinking..."
@@ -3331,25 +3250,31 @@ with st.container(
                     )
 
 
+                    # ------------------------------------------------
+                    # IMPORTANT:
+                    #
+                    # DO NOT DO THIS:
+                    #
+                    # st.session_state.ai_chef_input = ""
+                    #
+                    # clear_on_submit=True already clears the widget.
+                    # ------------------------------------------------
+
                     st.rerun()
 
 
                 except Exception:
 
-                    if (
-                        st.session_state.ai_chef_messages
-                    ):
+                    # Remove failed user question
+
+                    if st.session_state.ai_chef_messages:
 
                         last_message = (
-                            st.session_state
-                            .ai_chef_messages[-1]
+                            st.session_state.ai_chef_messages[-1]
                         )
 
 
-                        if (
-                            last_message["role"]
-                            == "user"
-                        ):
+                        if last_message["role"] == "user":
 
                             st.session_state.ai_chef_messages.pop()
 
@@ -3521,19 +3446,13 @@ with logout_col2:
     ):
 
         try:
-
             supabase.auth.sign_out()
-
         except Exception:
-
             pass
 
 
         st.session_state.authenticated = False
-
         st.session_state.user = None
-
-        st.session_state.auth_provider = None
 
 
         st.session_state.pop(
@@ -3561,6 +3480,7 @@ with logout_col2:
 
 
         st.session_state.ai_chef_messages = []
+
 
         st.rerun()
 
