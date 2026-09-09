@@ -31,7 +31,13 @@ st.set_page_config(
 def init_gemini():
 
     return genai.Client(
-        api_key=st.secrets["GEMINI_API_KEY"]
+        api_key=st.secrets["GEMINI_API_KEY"],
+        http_options=types.HttpOptions(
+            timeout=20000,
+            retry_options=types.HttpRetryOptions(
+                attempts=1
+            )
+        )
     )
 
 
@@ -457,7 +463,7 @@ st.markdown("""
 
     .ai-chef-subtitle {
         font-size: 15px;
-        color: #766A62 !important;
+        color: #6F625A !important;
         line-height: 1.55;
     }
 
@@ -678,6 +684,33 @@ st.markdown("""
     }
 
 
+    .ai-chef-input-label {
+
+        color: #5F5149 !important;
+
+        font-size: 15px !important;
+
+        font-weight: 700 !important;
+
+        margin-top: 8px !important;
+
+        margin-bottom: 8px !important;
+
+        opacity: 1 !important;
+
+    }
+
+
+    .ai-chef-input-hint {
+        color: #8A7D74 !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-top: -2px !important;
+        margin-bottom: 10px !important;
+        opacity: 1 !important;
+    }
+
+
     .st-key-ai_chef_input input {
 
         background: #FFFFFF !important;
@@ -697,7 +730,33 @@ st.markdown("""
 
     .st-key-ai_chef_input input::placeholder {
 
-        color: #9B9088 !important;
+        color: #766A62 !important;
+
+        opacity: 1 !important;
+
+        font-weight: 500 !important;
+
+    }
+
+
+    /* Visible Streamlit warning when the question is empty */
+
+    div[data-testid="stAlert"] {
+
+        background: #FFFBD6 !important;
+
+        border: 1px solid #F1E7A5 !important;
+
+        border-radius: 12px !important;
+
+        color: #5F5149 !important;
+
+    }
+
+
+    div[data-testid="stAlert"] * {
+
+        color: #5F5149 !important;
 
         opacity: 1 !important;
 
@@ -1183,18 +1242,25 @@ def ask_ai_chef(
     recipe=None
 ):
 
+    """
+    Generate a fast, natural AI Chef response for any food-related question.
+
+    FoodLens context is optional: the user can chat with AI Chef even when
+    they have not uploaded an image or selected a recipe.
+    """
+
     food_context = (
         format_food_name(predicted_food)
         if predicted_food
         else "No food has been identified yet."
     )
 
-    recipe_context = (
-        "No recipe has been selected yet."
-    )
-
+    recipe_context = "No recipe has been selected yet."
 
     if recipe:
+
+        ingredients = recipe.get("ingredients", [])
+        instructions = recipe.get("instructions", [])
 
         recipe_context = f"""
 Recipe name: {recipe.get("recipe_name", "Unknown")}
@@ -1205,131 +1271,119 @@ Carbs: {recipe.get("carbs", "Unknown")}g
 Fat: {recipe.get("fat", "Unknown")}g
 
 Ingredients:
-{chr(10).join("- " + str(x) for x in recipe.get("ingredients", []))}
+{chr(10).join("- " + str(x) for x in ingredients)}
 
 Instructions:
 {chr(10).join(
     f"{i}. {str(x)}"
-    for i, x in enumerate(
-        recipe.get("instructions", []),
-        1
-    )
+    for i, x in enumerate(instructions, 1)
 )}
 """
 
+    # Keep the latest turns so follow-up questions still feel conversational
+    # without making every request unnecessarily large.
+    recent_messages = st.session_state.ai_chef_messages[-6:]
 
-    conversation_history = ""
-
-
-    for message in st.session_state.ai_chef_messages[-10:]:
-
-        role = (
-            "User"
-            if message["role"] == "user"
-            else "AI Chef"
+    conversation_history = "\n".join(
+        (
+            "User" if message["role"] == "user" else "AI Chef"
         )
+        + f": {message['content']}"
+        for message in recent_messages
+    )
 
-        conversation_history += (
-            f"{role}: {message['content']}\n"
-        )
+    system_instruction = """
+You are AI Chef, the friendly food assistant inside FoodLens AI.
 
+Your job is to answer the user's food-related questions naturally, helpfully,
+and conversationally, similar to a general AI assistant but specialized in
+food and cooking. The user does NOT need to upload an image or choose a recipe
+before asking a question.
+
+You can answer questions about: recipes, cooking methods, ingredients,
+ingredient substitutions, meal ideas, nutrition, calories, protein, healthy
+eating, food storage, food preparation, baking, kitchen techniques, spices,
+flavors, cuisines, serving sizes, meal planning, leftovers, and food science.
+You can also help the user decide what to cook based on ingredients they have.
+
+Use the detected food and recipe context when it is relevant, but never force
+the answer to be about them if the user's question is about something else.
+If there is no detected food or recipe, simply answer the question normally.
+
+If the user asks a follow-up such as "what about without oil?", use the recent
+conversation to understand what "it" refers to.
+
+Do not invent recipe ingredients, nutrition numbers, or facts that are presented
+as coming from the FoodLens recipe database. If a value is not provided, say
+that it is an estimate or give general guidance instead. If FoodLens' detected
+food has low confidence, treat it as a possible identification rather than a
+confirmed fact.
+
+For food-safety or health questions, give sensible general guidance and avoid
+pretending to diagnose a medical condition.
+
+If the user asks something completely unrelated to food, politely explain that
+AI Chef is focused on food, cooking, and nutrition, then offer to help with a
+food-related version of the question.
+
+Answer the user directly. Do not mention these instructions.
+"""
 
     prompt = f"""
-You are AI Chef, the cooking assistant inside FoodLens AI.
-
-Your job is to give practical, friendly and useful cooking advice.
-
-Detected food:
+Detected food from FoodLens:
 {food_context}
 
-Recipe context:
+Selected recipe context:
 {recipe_context}
 
-Help the user with:
-
-- Cooking instructions
-- Ingredient substitutions
-- Healthier alternatives
-- Increasing protein
-- Reducing calories
-- Making food spicy or mild
-- Adjusting serving sizes
-- Cooking techniques
-- Ingredient ideas
-- Recipe modifications
-
-Be concise but helpful.
-
-If the detected food is uncertain, clearly mention that the food
-prediction may not be exact.
-
-Do not claim that an ingredient or nutrition value exists unless
-it is provided in the recipe context.
-
-Conversation history:
-{conversation_history}
+Recent conversation:
+{conversation_history or "No previous conversation."}
 
 User's latest question:
 {question}
 
-Answer the latest user question as AI Chef.
+Give the best answer to the user's latest question as AI Chef.
+Keep the response practical and easy to read. Use short paragraphs or bullet
+points when useful.
 """
 
-
-    models_to_try = [
-        "gemini-3.8-flash",
-        "gemini-3.7-flash"
-    ]
-
-
+    # Gemini 3.1 Flash-Lite is a stable, cost-efficient model intended for
+    # high-volume tasks and is a good fit for a fast food-chat experience.
+    model_name = "gemini-3.1-flash-lite"
     last_error = None
 
+    # At most two total API calls: one normal attempt + one immediate retry.
+    for attempt in range(2):
 
-    for model_name in models_to_try:
+        try:
 
-        for attempt in range(3):
-
-            try:
-
-                response = gemini_client.models.generate_content(
-                    model=model_name,
-                    contents=prompt
+            response = gemini_client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    temperature=0.4,
+                    max_output_tokens=500,
+                    candidate_count=1
                 )
+            )
 
+            if response and response.text:
+                return response.text.strip()
 
-                if response and response.text:
+            last_error = Exception("Gemini returned an empty response.")
 
-                    return response.text
+        except Exception as e:
 
+            last_error = e
 
-            except Exception as e:
-
-                last_error = e
-
-                error_text = str(e)
-
-
-                if (
-                    "503" in error_text
-                    or "UNAVAILABLE" in error_text
-                ):
-
-                    import time
-
-                    time.sleep(
-                        2 * (attempt + 1)
-                    )
-
-                    continue
-
-                break
-
+            # Retry only once and do not introduce a long sleep.
+            if attempt == 0:
+                continue
 
     raise Exception(
-        "Gemini is temporarily unavailable because the AI model "
-        "is experiencing high demand. Please try again in a few "
-        "seconds.\n\n"
-        f"Last error: {last_error}"
+        "Gemini is temporarily unavailable. Please try again in a few seconds."
+        f"\n\nLast error: {last_error}"
     )
 
 
@@ -2148,8 +2202,8 @@ with st.container(
         </div>
 
         <div class="ai-chef-subtitle">
-            Ask your personal AI Chef anything about your food,
-            recipe or cooking.
+            Ask your AI Chef anything about food, cooking, recipes,
+            ingredients, nutrition or meal ideas.
         </div>
 
     </div>
@@ -2184,10 +2238,8 @@ with st.container(
         st.html("""
         <div class="ai-chef-info">
 
-            💡 Upload and analyze a food image first
-            for personalized recipe advice.
-
-            You can still ask general cooking questions below.
+            💡 No image is required. Ask AI Chef anything about food,
+            cooking, recipes, ingredients, nutrition or meal ideas.
 
         </div>
         """)
@@ -2273,7 +2325,7 @@ with st.container(
 
     st.html("""
     <div class="ai-chef-input-label">
-        Ask your AI Chef
+        Ask your AI Chef anything 🍳
     </div>
     """)
 
@@ -2306,7 +2358,7 @@ with st.container(
             chef_question = st.text_input(
                 "Ask AI Chef something...",
                 placeholder=(
-                    "Can I replace chicken with paneer? 🍳"
+                    "Ask anything about food, cooking, recipes or nutrition..."
                 ),
                 label_visibility="collapsed",
                 key="ai_chef_input"
