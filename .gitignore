@@ -1,9 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Streamlit secrets
 .streamlit/secrets.toml
 
-venv/
-__pycache__/
-*.pyc
+# Local environment files
+.env
+.env.*
 
-data/food-101/
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-data/food-101.tar.gz
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
+
+data/
